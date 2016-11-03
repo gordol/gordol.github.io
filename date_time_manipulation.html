@@ -60,7 +60,7 @@ td {
 
 </style>
 
-<p>Why would anyone write a blog post about time manipulation? We all understand time… 24 hours a day, 7 days a week, right?</p>
+<p>Why would anyone write a blog post about time manipulation? We all understand time&hellip; 24 hours a day, 7 days a week, right?</p>
 
 <p><strong><em>LIES!</em></strong> The truth is, time is a mess, an arbitrary cyclic cascading relative political mess, and it just gets worse as time passes and more exceptions are made to previously established rules.</p>
 
@@ -130,13 +130,13 @@ Time-Zone / UTC Offset Map
 
 <p>Before clocks were invented, the way we all kept time in sync was with the sun, moon, and other celestial objects. After all, clocks are just calibrated loops, basically, and rotation of the earth is an obvious loop that we all have in common.</p>
 
-<p>Let’s go back in time, not far…</p>
+<p>Let’s go back in time, not far&hellip;</p>
 
 <p>Prior to the early 1800s, synchronizing time was never really a problem we had to face, since prior to then, it wasn’t feasible for people or information travel from place to place in a fast enough manner for it to matter. Are you trekking a couple hundred miles? It probably won’t matter if your clock drifts a bit between where you left and where you’re going, just adjust when you get there.</p>
 
 <p>In the early-mid 1880s mechanized rail infrastructure was just beginning to expand. It was difficult to keep time in sync relatively to others when traveling quickly, which, when one really considers it, is a very recent possibility for humans, relative to the rest of history.</p>
 
-<p><a href="https://en.wikipedia.org/wiki/Time_zone">time-zones</a> were created to manage that complexity. When you cross a threshold for a time-zone, you either move forward or backwards by some arbitrary amount of time, depending on your direction of travel, and where you’re moving to/from. We all understand that, and agree upon it, <em>mostly</em>.</p>
+<p><a href="https://en.wikipedia.org/wiki/Time_zone">Time-zones</a> were created to manage that complexity. When you cross a threshold for a time-zone, you either move forward or backwards by some arbitrary amount of time, depending on your direction of travel, and where you’re moving to/from. We all understand that, and agree upon it, <em>mostly</em>.</p>
 
 <quote><p>Most of the time-zones on land are offset from Coordinated Universal Time (UTC) by a whole number of hours (UTC−12 to UTC+14), but a few zones are offset by 30 or 45 minutes (for example Newfoundland Standard Time is UTC−03:30, Nepal Standard Time is UTC+05:45, and Indian Standard Time is UTC+05:30). Some higher latitude and temperate zone countries use daylight saving time for part of the year, typically by adjusting local clock time by an hour.</p></quote>
 
@@ -180,7 +180,7 @@ Time-Zone / UTC Offset Map
 <h3 id="backstory">Backstory</h3>
 <p>So, primed with this knowledge, let’s look at some actual programming problems. Our target language here is Python, but these patterns are language agnostic.</p>
 
-<p>Recently, I got into a long discussion with the author of a Python time manipulation library… That’s what encouraged me to write this blog post.</p>
+<p>Recently, I got into a long discussion with the author of a Python time manipulation library&hellip; That’s what encouraged me to write this blog post.</p>
 
 <h3 id="unix-philosophy">Unix philosophy</h3>
 <p>Let’s talk a bit about <a href="https://en.wikipedia.org/wiki/Unix_philosophy">unix philosophy</a>, and why datetime module in Python is the way it is, and the TZ databases exist independently.</p>
@@ -196,11 +196,11 @@ Time-Zone / UTC Offset Map
 
 <h3 id="tz-database">TZ Database</h3>
 
-<p>time-zones are represented as an offset from UTC, which are documented in the <a href="https://en.wikipedia.org/wiki/Olson_database">tz database</a>. Thanks to Arthur David Olson, Paul Eggert, and many others from the community, we have this thing. The tz database is actually mildly interesting <a href="https://blog.jonudell.net/2009/10/23/a-literary-appreciation-of-the-olsonzoneinfotz-database/">if you start digging into it</a>. I will put a few humorous examples at the end of this article.</p>
+<p>Time-zones are represented as an offset from UTC, which are documented in the <a href="https://en.wikipedia.org/wiki/Olson_database">tz database</a>. Thanks to Arthur David Olson, Paul Eggert, and many others from the community, we have this thing. The tz database is actually mildly interesting <a href="https://blog.jonudell.net/2009/10/23/a-literary-appreciation-of-the-olsonzoneinfotz-database/">if you start digging into it</a>. I will put a few humorous examples at the end of this article.</p>
 
 <h3 id="rtfm">RTFM</h3>
 
-<p>Yes, I said it. Read, the, freaking, manual! It’s astounding how often many developers fail to do this simple first step before undertaking a new task…</p>
+<p>Yes, I said it. Read, the, freaking, manual! It’s astounding how often many developers fail to do this simple first step before undertaking a new task&hellip;</p>
 
 <h3 id="pythons-datetime-module">Python’s <a href="https://docs.python.org/3/library/datetime.html">datetime</a> module</h3>
 
@@ -232,7 +232,7 @@ Time-Zone / UTC Offset Map
  	<li>What scale of time is your problem domain? Geologic time? Celestial time? Lifespan of a human?</li>
 </ul></p>
 
-<p>It’s all relative… What if you’re tracking time for a satellite, relative to a ground station? Maybe we’ll address these in another blog post, but for now, we’re going to focus on Daylight Savings Time, time-zones, month bounds, and off-by-one errors, because these are the most common mistakes I see.</p>
+<p>It’s all relative&hellip; What if you’re tracking time for a satellite, relative to a ground station? Maybe we’ll address these in another blog post, but for now, we’re going to focus on Daylight Savings Time, time-zones, month bounds, and off-by-one errors, because these are the most common mistakes I see.</p>
 
 <h3 id="common-misconception">Common misconception</h3>
 <quote><p>You can’t handle time-zones properly with the standard library.</p>
@@ -252,13 +252,13 @@ Time-Zone / UTC Offset Map
 </code>
 </quote>
 
-<p>For any seasoned Python developers, the flaw here is likely obvious…</p>
+<p>For any seasoned Python developers, the flaw here is likely obvious&hellip;</p>
 
 <h3 id="always-use-utc-when-manipulating-time">Always use UTC when manipulating time.</h3>
 
 <p>That's it! It’s that simple. All time manipulation operations should be done in a common time-zone, preferably UTC, and then time should be localized, if desired, when displaying to end-users. This is a notoriously common pain point for many programmers, both experienced, and new. It is very difficult to manage the state of time-zone transitions when doing manipulations in local time, and this simple pattern will save you much grief, I promise!</p>
 
-<p>You don’t just have to take my word for it either…</p>
+<p>You don’t just have to take my word for it either&hellip;</p>
 
 <h3 id="development-community-guidelines">Development Community Guidelines</h3>
 
@@ -269,10 +269,10 @@ Time-Zone / UTC Offset Map
 <p>It is good practice to use an explicit zone offset wherever possible. If one is not available, best practice is to use UTC as the implicit zone offset for conversions of this nature. This is because the values are exactly centered in the range of possibilities and because representation internally (as computer time) is usually based on UTC. Since a single reference point has been used it may be possible to unwind the change later even if erroneous conversion takes place. When working with multiple documents from various sources, the “implicit” offset of the document may vary widely from that of the implementation doing the processing. If UTC is widely used, the chances of error are reduced.</p></quote>
 
 <p><a href="https://msdn.microsoft.com/en-us/library/bb397769.aspx">and Microsoft</a>:</p>
-<quote><p>Coordinated Universal Time (UTC) is a high-precision, atomic time standard. The world’s time-zones are expressed as positive or negative offsets from UTC. Thus, UTC provides a kind of time-zone free or time-zone neutral time. The use of UTC time is recommended when a date and time’s portability across computers is important. […] Converting individual time-zones to UTC makes time comparisons easy.</p></quote>
+<quote><p>Coordinated Universal Time (UTC) is a high-precision, atomic time standard. The world’s time-zones are expressed as positive or negative offsets from UTC. Thus, UTC provides a kind of time-zone free or time-zone neutral time. The use of UTC time is recommended when a date and time’s portability across computers is important. [&hellip;] Converting individual time-zones to UTC makes time comparisons easy.</p></quote>
 
 <p><a href="https://docs.djangoproject.com/en/1.10/topics/i18n/timezones/">and Django</a>:</p>
-<quote><p>Even if your website is available in only one time-zone, it’s still good practice to store data in UTC in your database. The main reason is Daylight Saving Time (DST). Many countries have a system of DST, where clocks are moved forward in spring and backward in autumn. If you’re working in local time, you’re likely to encounter errors twice a year, when the transitions happen. […] This probably doesn’t matter for your blog, but it’s a problem if you over-bill or under-bill your customers by one hour, twice a year, every year. The solution to this problem is to use UTC in the code and use local time only when interacting with end users.</p></quote>
+<quote><p>Even if your website is available in only one time-zone, it’s still good practice to store data in UTC in your database. The main reason is Daylight Saving Time (DST). Many countries have a system of DST, where clocks are moved forward in spring and backward in autumn. If you’re working in local time, you’re likely to encounter errors twice a year, when the transitions happen. [&hellip;] This probably doesn’t matter for your blog, but it’s a problem if you over-bill or under-bill your customers by one hour, twice a year, every year. The solution to this problem is to use UTC in the code and use local time only when interacting with end users.</p></quote>
 
 <h3 id="proof-that-it-works">Proof that it works</h3>
 <p>I went on to explain this to the author of Pendulum, with examples:</p>
@@ -296,11 +296,11 @@ Delorean(datetime=2013-03-31 03:30:00+02:00, timezone=Europe/Paris)
 
 <h3 id="delorean">Delorean</h3>
 
-<p>Delorean is a library that is good at one thing, and does it well… Time manipulation. It works with the standard library datetime module, it doesn’t replace it or change default behaviors. It extends datetime with the tzinfo data so you don’t have to manage it, and saves you many lines of repetitive bootstrap code each time you want to manipulate a non-naive datetime.</p>
+<p>Delorean is a library that is good at one thing, and does it well&hellip; Time manipulation. It works with the standard library datetime module, it doesn’t replace it or change default behaviors. It extends datetime with the tzinfo data so you don’t have to manage it, and saves you many lines of repetitive bootstrap code each time you want to manipulate a non-naive datetime.</p>
 
 <h3 id="pendulum">Pendulum</h3>
 
-<p><a href="https://pendulum.eustace.io/">Pendulum</a> aims to fully replace datetime, timedelta, pytz, dateutil, and Delorean in one fell swoop. Never mind the blatant disregard for Unix philosophy, however, it seems the author thinks all the other solutions are broken. That seems a little far-fetched doesn’t it? Is it likely that so many other developers who use other libraries are wrong, and nobody noticed? Or is it likely that an individual is misunderstanding something? Let’s not forget how hard time is… and how easy it is to mess up.</p>
+<p><a href="https://pendulum.eustace.io/">Pendulum</a> aims to fully replace datetime, timedelta, pytz, dateutil, and Delorean in one fell swoop. Never mind the blatant disregard for Unix philosophy, however, it seems the author thinks all the other solutions are broken. That seems a little far-fetched doesn’t it? Is it likely that so many other developers who use other libraries are wrong, and nobody noticed? Or is it likely that an individual is misunderstanding something? Let’s not forget how hard time is&hellip; and how easy it is to mess up.</p>
 
 <p>The Pendulum <a href="https://pendulum.eustace.io/faq/">FAQ</a> states this at the bottom:</p>
 <quote><p>Delorean’s epoch() assumes UTC and doesn’t[sic] support specifying a time-zone</p></quote>
@@ -376,7 +376,7 @@ datetime.datetime(2016, 10, 25, 22, 29, 14, tzinfo=&lt;DstTzInfo 'US/Pacific' PD
 </table>
 </quote>
 
-<p>Hey, wait a second…<br/><br/>
+<p>Hey, wait a second&hellip;<br/><br/>
 <ul>
  	<li>120 minutes is 2 hours</li>
  	<li>100 minutes is 1 hour and 40 minutes.</li>
@@ -386,7 +386,7 @@ datetime.datetime(2016, 10, 25, 22, 29, 14, tzinfo=&lt;DstTzInfo 'US/Pacific' PD
 
 <h3 id="dst-transition-handled-flawlessly">DST Transition Handled Flawlessly</h3>
 
-<p>Let’s try out some more code… Using our rule of thumb to always use UTC when doing time manipulation.</p>
+<p>Let’s try out some more code&hellip; Using our rule of thumb to always use UTC when doing time manipulation.</p>
 <p>
 <code>&gt;&gt;&gt; amsterdam = Delorean(datetime(1940, 5, 15), 'Europe/Amsterdam')
 &gt;&gt;&gt; amsterdam
@@ -406,7 +406,7 @@ Delorean(datetime=datetime.datetime(1940, 5, 16, 1, 40), timezone='Europe/Amster
 Delorean(datetime=datetime.datetime(1942, 11, 2, 1, 40), timezone='Europe/Amsterdam')
 </code></p>
 
-<p>Now approaching the DST transition…</p>
+<p>Now approaching the DST transition&hellip;</p>
 
 <p>
 <code>&gt;&gt;&gt; delta = amsterdam_utc + timedelta(days=902)
@@ -430,22 +430,22 @@ Delorean(datetime=datetime.datetime(1942, 11, 3, 0, 40), timezone='Europe/Amster
 <h3 id="innovation-is-critical-but-be-careful">Innovation is critical, but be careful</h3>
 <p>My intent with this piece is not to discourage innovation, it’s great that someone wants to make things and share them with the community, but when the drive and desire to create said library is derived from fundamental misunderstandings, one cannot help but worry.</p>
 
-<p>To summarize, as should be evident, time is complicated… it’s easy to make mistakes. This isn’t a slight against the author of Pendulum, but a warning to all developers. This my friends, is why you should avoid re-inventing the wheel if you can help it.</p>
+<p>To summarize, as should be evident, time is complicated&hellip; it’s easy to make mistakes. This isn’t a slight against the author of Pendulum, but a warning to all developers. This my friends, is why you should avoid re-inventing the wheel if you can help it.</p>
 
 <h3 id="easy-mistakes-mean-common-problems">Easy mistakes mean common problems</h3>
 <p>This isn’t the first time we’ve come across libraries with time bugs, and definitely won’t be the last.</p>
 
 <p><a href="https://github.com/pcdinh/greenclock">greenclock</a> is a greenlet-based task timer. While testing I was able to reproduce the following exception: <code>ValueError: hour must be in 0..23</code> when using <code>start_at='once'</code> between 2300-2400 hrs.</p>
 
-<p>Luckily the 11PM bug in greenclock was an <a href="https://github.com/pcdinh/greenclock/issues/4">easy fix</a>. But still further <a href="https://github.com/pcdinh/greenclock/blob/52df4f5bdfae296e01d253ae7a177c7fc90ba6c5/greenclock/__init__.py#L93">datetime issues remain</a>. If you run that on the last day of the month… <code>ValueError: day is out of range for month</code>. Oops!</p>
+<p>Luckily the 11PM bug in greenclock was an <a href="https://github.com/pcdinh/greenclock/issues/4">easy fix</a>. But still further <a href="https://github.com/pcdinh/greenclock/blob/52df4f5bdfae296e01d253ae7a177c7fc90ba6c5/greenclock/__init__.py#L93">datetime issues remain</a>. If you run that on the last day of the month&hellip; <code>ValueError: day is out of range for month</code>. Oops!</p>
 
 <p>Unfortunately, it’s not uncommon for many programmers to have major time problems at some point or another, if not repeatedly, depending on the problem domain. Yep, even companies with dedicated QA teams and million multi-dollar budgets.</p>
 
 <p>For example, <a href="https://www.cnet.com/news/outlook-new-daylight-saving-time-a-series-of-unfortunate-events/">back in 2007 Microsoft had some Outlook bugs that resulted in events moving to a different day during daylight savings time</a>!</p>
 
-<p>In 2005 US Congress voted to <a href="http://www.timetemperature.com/tzus/daylight_saving_time_extended.shtml">change daylight savings time</a>, and more recently, in 2015, Arizona decided arbitrarily to <a href="http://www.usatoday.com/story/news/nation/2015/03/08/no-arizona-daylight-saving-time/24619125/">stop observing daylight savings time</a>. This happens all over the world, constantly, at random. It’s a mess… Use UTC to avoid pain!</p>
+<p>In 2005 US Congress voted to <a href="http://www.timetemperature.com/tzus/daylight_saving_time_extended.shtml">change daylight savings time</a>, and more recently, in 2015, Arizona decided arbitrarily to <a href="http://www.usatoday.com/story/news/nation/2015/03/08/no-arizona-daylight-saving-time/24619125/">stop observing daylight savings time</a>. This happens all over the world, constantly, at random. It’s a mess&hellip; Use UTC to avoid pain!</p>
 
-<p>Time problems also happen in hardware too… in 2004, <a href="http://spectrum.ieee.org/aerospace/aviation/lost-radio-contact-leaves-pilots-on-their-own">LAX air traffic control lost radio communications with pilots</a> due to a time bug. They have microcontrollers that tick down in milliseconds to keep sync between ATC and the planes. FAA guidelines suggest resetting the clocks every 50 days, giving 3 weeks of time before they would have ran out. However, apparently nobody built in safeguards to prevent that threshold from being met, and chaos ensued (or they probably just switched to air band and did it the old fashioned way, but I digress).</p>
+<p>Time problems also happen in hardware too&hellip; in 2004, <a href="http://spectrum.ieee.org/aerospace/aviation/lost-radio-contact-leaves-pilots-on-their-own">LAX air traffic control lost radio communications with pilots</a> due to a time bug. They have microcontrollers that tick down in milliseconds to keep sync between ATC and the planes. FAA guidelines suggest resetting the clocks every 50 days, giving 3 weeks of time before they would have ran out. However, apparently nobody built in safeguards to prevent that threshold from being met, and chaos ensued (or they probably just switched to air band and did it the old fashioned way, but I digress).</p>
 
 <p>Apple, too, has had time problems, where, in 2010, <a href="http://www.theregister.co.uk/2010/10/05/iphone_daylight_saving/">alarm times did not update during DST transitions</a>, and it even happens still, <a href="https://www.engadget.com/2013/10/27/ios-daylight-savings-time-bug-strikes-again/">in 2013</a>. Even recently with IOS8 many users have had <a href="http://www.macrumors.com/2015/01/23/ios-8-gmt-calendar-bug/">issues with their calendar app</a>.</p>
 
@@ -454,7 +454,7 @@ Delorean(datetime=datetime.datetime(1942, 11, 3, 0, 40), timezone='Europe/Amster
 <p>And finally I can’t help but also point you towards a list of <a href="https://en.wikipedia.org/wiki/Time_formatting_and_storage_bugs">time formatting and storage bugs</a> that are common enough to be listed on Wikipedia. The most notorious one is the Y2K bug, which I’m sure you all are familiar with.</p>
 
 <h3 id="crazy-enterprise-time-hacks">Crazy Enterprise Time Hacks</h3>
-<p>Here’s an example of some of the craziness that people come up with as work-arounds for weird time disparities on real-time operating systems (or real-ish time, think ERP software, etc…):</p>
+<p>Here’s an example of some of the craziness that people come up with as work-arounds for weird time disparities on real-time operating systems (or real-ish time, think ERP software, etc&hellip;):</p>
 
 <quote><p><a href="https://en.wikipedia.org/wiki/OpenVMS">OpenVMS</a> is a multi-user, multiprocessing virtual memory-based operating system (OS) designed for use in time sharing, batch processing, and transaction processing. When process priorities are suitably adjusted, it may approach real-time operating system characteristics. The system offers high availability through clustering and the ability to distribute the system over multiple physical machines. This allows the system to be tolerant against disasters that may disable individual data-processing facilities.</p>
 
