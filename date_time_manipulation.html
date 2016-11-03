@@ -109,7 +109,18 @@ td {
         <ul>
             <li><a href="#of-glass-houses-and-stone-throwing">Of glass houses and stone throwing</a></li>
             <li><a href="#innovation-is-critical-but-be-careful">Innovation is critical, but be careful</a></li>
-            <li><a href="#easy-mistakes-mean-common-problems">Easy mistakes mean common problems</a></li>
+            <li><a href="#easy-mistakes-mean-common-problems">Easy mistakes mean common problems</a>
+                <ul>
+                    <li><a href="#microsoft">Microsoft</a></li>
+                    <li><a href="#apple">Apple</a></li>
+                    <li><a href="#banks">Banks</a></li>
+                    <li><a href="#nasa">NASA</a></li>
+                    <li><a href="#air-traffic-control">Air Traffic Control</a></li>
+                    <li><a href="#chaos">Anarchy and Chaos!</a></li>
+                    <li><a href="#notorious-time-bugs">Notorious Time Bugs</a></li>
+
+                </ul>
+            </li>
             <li><a href="#crazy-enterprise-time-hacks">Crazy Enterprise Time Hacks</a></li>
         </ul>
     </li>
@@ -442,19 +453,27 @@ Delorean(datetime=datetime.datetime(1942, 11, 3, 0, 40), timezone='Europe/Amster
 
 <p>Unfortunately, it’s not uncommon for many programmers to have major time problems at some point or another, if not repeatedly, depending on the problem domain. Yep, even companies with dedicated QA teams and million multi-dollar budgets.</p>
 
-
+<h4 id="microsoft">Microsoft</h4>
 <p>For example, <a href="https://www.cnet.com/news/outlook-new-daylight-saving-time-a-series-of-unfortunate-events/">back in 2007 Microsoft had some Outlook bugs that resulted in events moving to a different day during daylight savings time</a>!</p>
-
 <p>Microsoft had more bugs again in <a href="https://support.microsoft.com/en-us/kb/2687252">again in 2012</a>, <a href="https://support.microsoft.com/en-us/kb/2800213">again in 2013</a>, and, yep, more <a href="https://support.microsoft.com/en-us/kb/2922223">UTC bugs in 2014</a>.</p>
 
+
+<h4 id="apple">Apple</h4>
 <p>Apple, too, has had time problems, where, in 2010, <a href="http://www.theregister.co.uk/2010/10/05/iphone_daylight_saving/">alarm times did not update during DST transitions</a>, and again, <a href="https://www.engadget.com/2013/10/27/ios-daylight-savings-time-bug-strikes-again/">in 2013</a>. Even recently with IOS8 many users have had <a href="http://www.macrumors.com/2015/01/23/ios-8-gmt-calendar-bug/">issues with their calendar app</a>.</p>
 
-<p><a href="http://www.smartcompany.com.au/finance/economy/12681-20100104-businesses-hit-by-bank-of-queensland-eftpos-bug/">In 2010</a> Bank of Queensland had a problem due to an incorrect hexadecimal number conversion routine causing terminals to decline customers’ cards as expired because the terminals jumped from 2010 to 2016.</p>
+<h4 id="banks">Banks</h4>
+<p><a href="http://www.smartcompany.com.au/finance/economy/12681-20100104-businesses-hit-by-bank-of-queensland-eftpos-bug/">In 2010</a> Bank of Queensland had a problem due to an incorrect hexadecimal number conversion routine causing terminals to decline customers’ cards as expired because the terminals jumped from 2010 to 2016. This actually happened with banks all over Europe in 2010, for the same reason, flawed <a href="https://en.wikipedia.org/wiki/Binary-coded_decimal">Hex/Decimal conversion</a>. Over 20 million bank card users verification chips failed as a result.</p>
 
+<h4 id="nasa">NASA?!?!</h4>
+<p>This is a serious problem, folks... <a href="https://en.wikipedia.org/wiki/Deep_Impact_(spacecraft)#Contact_lost_and_end_of_mission">NASA even lost a spacecraft in 2013</a>, a modern one, even, that was launched in 2005, due to a time overflow bug. Yes, even a <a href="https://www.nasa.gov/pdf/103744main_presskit_121404.pdf">$267 million dollar spacecraft</a> had a simple bug like this. We are truly doomed!</p>
+
+<h4 id="air-traffic-control">Air Traffic Control Systems</h4>
 <p>Time problems also happen in hardware too&hellip; in 2004, <a href="http://spectrum.ieee.org/aerospace/aviation/lost-radio-contact-leaves-pilots-on-their-own">LAX air traffic control lost radio communications with pilots</a> due to a time bug. They have microcontrollers that tick down in milliseconds to keep sync between ATC and the planes. FAA guidelines suggest resetting the clocks every 50 days, giving 3 weeks of time before they would have ran out. However, apparently nobody built in safeguards to prevent that threshold from being met, and chaos ensued (or they probably just switched to air band and did it the old fashioned way, but I digress).</p>
 
+<h4 id="random-changes">Random Changes</h4>
 <p>In 2005 US Congress voted to <a href="http://www.timetemperature.com/tzus/daylight_saving_time_extended.shtml">change daylight savings time</a>, and more recently, in 2015, Arizona decided arbitrarily to <a href="http://www.usatoday.com/story/news/nation/2015/03/08/no-arizona-daylight-saving-time/24619125/">stop observing daylight savings time</a>. This happens all over the world, constantly, at random. It’s a mess&hellip; Use UTC to avoid pain!</p>
 
+<h4 id="notorious-time-bugs">Notorious Time Bugs</h4>
 <p>And finally I can’t help but also point you towards a list of <a href="https://en.wikipedia.org/wiki/Time_formatting_and_storage_bugs">time formatting and storage bugs</a> that are common enough to be listed on Wikipedia. The most notorious one is the Y2K bug, which I’m sure you all are familiar with.</p>
 
 <h3 id="crazy-enterprise-time-hacks">Crazy Enterprise Time Hacks</h3>
@@ -467,6 +486,11 @@ Delorean(datetime=datetime.datetime(1942, 11, 3, 0, 40), timezone='Europe/Amster
 <p>For example by 25% for 2 hours before and after the daylight savings time transition, or by 50% during the double hour. This is pretty standard practice, actually, in the ERP world. It does make sense, if you think about it, simply speed up or slow down the hardware clock for a nice smooth transition. The end result is the same, and the transition is fluid. Ahh, relativity.</p>
 
 <p>They should just set their system clock to UTC, right?! Unfortunately, this <a href="https://www.cl.cam.ac.uk/~mgk25/mswish/ut-rtc.html">isn’t always possible</a>, depending on the platform.</p>
+
+<h2 id='future'>The Future: 2038</h2>
+
+<p>So, can we learn from the past? I sure hope so, because we know there are upcoming problems in the not-so-distant future: 2038. 32-bit POSIX epoch will overflow. Most systems have updated to use 64-bit integers already, but many low level systems that nobody ever thinks about have yet to be updated, such as file system drivers, data formats, and 32bit embedded systems still need to be updated. I'm not aware of any mass efforts to fix these things (yet), but I suggest we all get busy trying to fix these things now while we can, and doing our best to prevent further issues in the future as much as possible. If the past is any indication of the future, then we haven't learned our lesson yet. You know the saying, "History repeats itself". It is our flaw. Things will go wrong over and over until we learn our lesson. We are human, and we will always make mistakes, and there are always inherent limitations, whether they are known constraints, or low-level mundane intricacies that nobody thinks of until it's too late.</p>
+
 
 <h2 id="tz-database-nerd-humor">TZ Database Nerd Humor</h2>
 
