@@ -158,7 +158,7 @@ td {
 <p>UT1 is the principal form of Universal Time. While conceptually it is mean solar time at 0° longitude, precise measurements of the Sun are difficult. Hence, it is computed from observations of distant quasars using long baseline interferometry, laser ranging of the Moon and artificial satellites, as well as the determination of GPS satellite orbits. UT1 is the same everywhere on Earth, and is proportional to the rotation angle of the Earth with respect to distant quasars, specifically, the International Celestial Reference Frame (ICRF), neglecting some small adjustments. The observations allow the determination of a measure of the Earth’s angle with respect to the ICRF, called the Earth Rotation Angle (ERA, which serves as a modern replacement for Greenwich Mean Sidereal Time).</p>
 
 <h4 id="utc">UTC</h4>
-<p>UTC (Coordinated Universal Time) is an atomic timescale that approximates UT1. It is the international standard on which civil time is based. It ticks SI seconds, in step with TAI. It usually has 86,400 SI seconds per day but is kept within 0.9 seconds of UT1 by the introduction of occasional intercalary leap seconds. As of 2015, these leaps have always been positive (the days which contained a leap second were 86,401 seconds long). Whenever a level of accuracy better than one second is not required, UTC can be used as an approximation of UT1.</p>
+<p>UTC (Coordinated Universal Time) is an atomic time scale that approximates UT1. It is the international standard on which civil time is based. It ticks SI seconds, in step with TAI. It usually has 86,400 SI seconds per day but is kept within 0.9 seconds of UT1 by the introduction of occasional intercalary leap seconds. As of 2015, these leaps have always been positive (the days which contained a leap second were 86,401 seconds long). Whenever a level of accuracy better than one second is not required, UTC can be used as an approximation of UT1.</p>
 
 <hr />
 
@@ -242,7 +242,7 @@ td {
 
 <h3 id="always-use-utc-when-manipulating-time">Always use UTC when manipulating time.</h3>
 
-<p>Thats it! It’s that simple. All time manipulation operations should be done in a common time-zone, preferably UTC, and then time should be localized, if desired, when displaying to end-users. This is a notoriously common pain point for many programmers, both experienced, and new. It is very difficult to manage the state of time-zone transitions when doing manipulations in local time, and this simple pattern will save you much grief, I promise!</p>
+<p>That's it! It’s that simple. All time manipulation operations should be done in a common time-zone, preferably UTC, and then time should be localized, if desired, when displaying to end-users. This is a notoriously common pain point for many programmers, both experienced, and new. It is very difficult to manage the state of time-zone transitions when doing manipulations in local time, and this simple pattern will save you much grief, I promise!</p>
 
 <p>You don’t just have to take my word for it either…</p>
 
