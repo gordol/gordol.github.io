@@ -6,7 +6,7 @@ quote{
     color: #000;
     display:block;
     margin:1em;
-    padding:.5em;
+    padding:1.5em;
     font-size:medium!important;
 }
 
@@ -18,9 +18,9 @@ code{
     background: #f7fff0;
     border-left:0.5em solid #e4ffcc;
     color: #000;
-    display:inline-block;
+    display:block;
     margin:1em;
-    padding:.5em;
+    padding:1.5em;
     font-family: monospace;
     white-space: pre;
     font-size:medium!important;
@@ -203,21 +203,19 @@ width: 100%;
 
 <h3 id="common-misconception">Common misconception</h3>
 <quote><p>You can’t handle timezones properly with the standard library.</p>
-<code>
-    &gt;&gt;&gt; d = delorean.Delorean(datetime(2013, 3, 31, 1, 30), 'Europe/Paris')
-    &gt;&gt;&gt; d.datetime.isoformat()
-    '2013-03-31T01:30:00+01:00'
-    &gt;&gt;&gt; d = d + timedelta(hours=1)
-    &gt;&gt;&gt; d.datetime.isoformat()
-    '2013-03-31T02:30:00+01:00'
+<code>&gt;&gt;&gt; d = delorean.Delorean(datetime(2013, 3, 31, 1, 30), 'Europe/Paris')
+&gt;&gt;&gt; d.datetime.isoformat()
+'2013-03-31T01:30:00+01:00'
+&gt;&gt;&gt; d = d + timedelta(hours=1)
+&gt;&gt;&gt; d.datetime.isoformat()
+'2013-03-31T02:30:00+01:00'
 </code>
-<code>
-    &gt;&gt;&gt; d = pendulum.create(2013, 3, 31, 1, 30, tz='Europe/Paris')
-    &gt;&gt;&gt; d.isoformat()
-    '2013-03-31T01:30:00+01:00'
-    &gt;&gt;&gt; d = d + timedelta(hours=1)
-    &gt;&gt;&gt; d.isoformat()
-    '2013-03-31T03:30:00+02:00'
+<code>&gt;&gt;&gt; d = pendulum.create(2013, 3, 31, 1, 30, tz='Europe/Paris')
+&gt;&gt;&gt; d.isoformat()
+'2013-03-31T01:30:00+01:00'
+&gt;&gt;&gt; d = d + timedelta(hours=1)
+&gt;&gt;&gt; d.isoformat()
+'2013-03-31T03:30:00+02:00'
 </code>
 </quote>
 
@@ -245,17 +243,16 @@ width: 100%;
 
 <h3 id="proof-that-it-works">Proof that it works</h3>
 <p>I went on to explain this to the author of Pendulum, with examples:</p>
-<code>
-    &gt;&gt;&gt; paris_time = Delorean(datetime(2013, 3, 31, 1, 30), 'Europe/Paris')
-    &gt;&gt;&gt; paris_time_utc = paris_time.shift('utc')
-    &gt;&gt;&gt; paris_time_utc_delta = paris_time_utc.datetime + timedelta(hours=1)
-    &gt;&gt;&gt; tz_aware_delta = Delorean(paris_time_utc_delta).shift('Europe/Paris')
-    &gt;&gt;&gt; 
-    &gt;&gt;&gt; paris_time
-    Delorean(datetime=2013-03-31 01:30:00+01:00, timezone=Europe/Paris)
-    &gt;&gt;&gt; 
-    &gt;&gt;&gt; tz_aware_delta
-    Delorean(datetime=2013-03-31 03:30:00+02:00, timezone=Europe/Paris)
+<code>&gt;&gt;&gt; paris_time = Delorean(datetime(2013, 3, 31, 1, 30), 'Europe/Paris')
+&gt;&gt;&gt; paris_time_utc = paris_time.shift('utc')
+&gt;&gt;&gt; paris_time_utc_delta = paris_time_utc.datetime + timedelta(hours=1)
+&gt;&gt;&gt; tz_aware_delta = Delorean(paris_time_utc_delta).shift('Europe/Paris')
+&gt;&gt;&gt; 
+&gt;&gt;&gt; paris_time
+Delorean(datetime=2013-03-31 01:30:00+01:00, timezone=Europe/Paris)
+&gt;&gt;&gt; 
+&gt;&gt;&gt; tz_aware_delta
+Delorean(datetime=2013-03-31 03:30:00+02:00, timezone=Europe/Paris)
 </code>
 
 <p>To which he responded:</p>
@@ -283,12 +280,11 @@ width: 100%;
 <p>Well, first of all, why use Delorean for something the standard library can do on its own?</p>
 
 <p>And secondly, this assertion is patently false, as shown below. Delorean works just fine for this task:<br/>
-<code>
-    &gt;&gt;&gt; delorean.epoch(1477459754).shift('US/Pacific')
-    Delorean(datetime=2016-10-25 22:29:14-07:00, timezone=US/Pacific)
+<code>&gt;&gt;&gt; delorean.epoch(1477459754).shift('US/Pacific')
+Delorean(datetime=2016-10-25 22:29:14-07:00, timezone=US/Pacific)
 
-    &gt;&gt;&gt; delorean.epoch(1477459754).shift('US/Pacific').datetime
-    datetime.datetime(2016, 10, 25, 22, 29, 14, tzinfo=&lt;DstTzInfo 'US/Pacific' PDT-1 day, 17:00:00 DST&gt;)
+&gt;&gt;&gt; delorean.epoch(1477459754).shift('US/Pacific').datetime
+datetime.datetime(2016, 10, 25, 22, 29, 14, tzinfo=&lt;DstTzInfo 'US/Pacific' PDT-1 day, 17:00:00 DST&gt;)
 </code></p>
 
 <p>Finally, the author admitted that he did not understand the purpose of Delorean until now, and assumed it was supposed to replace the stdlibs, like his library.</p>
@@ -297,22 +293,19 @@ width: 100%;
 
 <quote>
 <p>
-<code>
-    &gt;&gt;&gt; d = delorean.Delorean(datetime(1940, 7, 1), 'Europe/Amsterdam')
-    &gt;&gt;&gt; d.datetime.dst() // timedelta(minutes=1)
-    100
+<code>&gt;&gt;&gt; d = delorean.Delorean(datetime(1940, 7, 1), 'Europe/Amsterdam')
+&gt;&gt;&gt; d.datetime.dst() // timedelta(minutes=1)
+100
 </code></p>
 <p>This is wrong, it should be 120. And using UTC will not fix that.</p>
-<p><code>
-    &gt;&gt;&gt; d = delorean.Delorean(datetime(1940, 7, 1), 'UTC').shift('Europe/Amsterdam')
-    &gt;&gt;&gt; d.datetime.dst() // timedelta(minutes=1)
-    100
+<p><code>&gt;&gt;&gt; d = delorean.Delorean(datetime(1940, 7, 1), 'UTC').shift('Europe/Amsterdam')
+&gt;&gt;&gt; d.datetime.dst() // timedelta(minutes=1)
+100
 </code></p>
 <p>In this case pendulum behaves properly:</p>
-<p><code>
-    &gt;&gt;&gt; d = pendulum.create(1940, 7, 1, tz='Europe/Amsterdam')
-    &gt;&gt;&gt; d.dst() // timedelta(minutes=1)
-    120
+<p><code>&gt;&gt;&gt; d = pendulum.create(1940, 7, 1, tz='Europe/Amsterdam')
+&gt;&gt;&gt; d.dst() // timedelta(minutes=1)
+120
 </code></p>
 <p>These case are not widespread thankfully but I thought I’d mention it.</p></quote>
 
@@ -362,30 +355,30 @@ width: 100%;
 
 <p>Let’s try out some more code… Using our rule of thumb to always use UTC when doing time manipulation.</p>
 <p>
-<code>
-    &gt;&gt;&gt; amsterdam = Delorean(datetime(1940, 5, 15), 'Europe/Amsterdam')
-    &gt;&gt;&gt; amsterdam
-    Delorean(datetime=datetime.datetime(1940, 5, 15, 0, 0), timezone='Europe/Amsterdam')
-    &gt;&gt;&gt;
-    &gt;&gt;&gt; amsterdam_utc = amsterdam.shift('utc')
-    &gt;&gt;&gt; delta = amsterdam_utc + timedelta(days=1)
-    &gt;&gt;&gt;
-    &gt;&gt;&gt; delta
-    Delorean(datetime=datetime.datetime(1940, 5, 15, 23, 40), timezone='UTC')
-    &gt;&gt;&gt;
-    &gt;&gt;&gt; delta.shift('Europe/Amsterdam')
-    Delorean(datetime=datetime.datetime(1940, 5, 16, 1, 40), timezone='Europe/Amsterdam')
-    &gt;&gt;&gt;
-    &gt;&gt;&gt; delta = amsterdam_utc + timedelta(days=901)
-    &gt;&gt;&gt; delta.shift('Europe/Amsterdam')
-    Delorean(datetime=datetime.datetime(1942, 11, 2, 1, 40), timezone='Europe/Amsterdam')
+<code>&gt;&gt;&gt; amsterdam = Delorean(datetime(1940, 5, 15), 'Europe/Amsterdam')
+&gt;&gt;&gt; amsterdam
+Delorean(datetime=datetime.datetime(1940, 5, 15, 0, 0), timezone='Europe/Amsterdam')
+&gt;&gt;&gt;
+&gt;&gt;&gt; amsterdam_utc = amsterdam.shift('utc')
+&gt;&gt;&gt; delta = amsterdam_utc + timedelta(days=1)
+&gt;&gt;&gt;
+&gt;&gt;&gt; delta
+Delorean(datetime=datetime.datetime(1940, 5, 15, 23, 40), timezone='UTC')
+&gt;&gt;&gt;
+&gt;&gt;&gt; delta.shift('Europe/Amsterdam')
+Delorean(datetime=datetime.datetime(1940, 5, 16, 1, 40), timezone='Europe/Amsterdam')
+&gt;&gt;&gt;
+&gt;&gt;&gt; delta = amsterdam_utc + timedelta(days=901)
+&gt;&gt;&gt; delta.shift('Europe/Amsterdam')
+Delorean(datetime=datetime.datetime(1942, 11, 2, 1, 40), timezone='Europe/Amsterdam')
 </code></p>
+
 <p>Now approaching the DST transition…</p>
+
 <p>
-<code>
-    &gt;&gt;&gt; delta = amsterdam_utc + timedelta(days=902)
-    &gt;&gt;&gt; delta.shift('Europe/Amsterdam')
-    Delorean(datetime=datetime.datetime(1942, 11, 3, 0, 40), timezone='Europe/Amsterdam')
+<code>&gt;&gt;&gt; delta = amsterdam_utc + timedelta(days=902)
+&gt;&gt;&gt; delta.shift('Europe/Amsterdam')
+Delorean(datetime=datetime.datetime(1942, 11, 3, 0, 40), timezone='Europe/Amsterdam')
 </code></p>
 <p>It works just fine! The results when using Delorean are in fact correct and as expected. Thankfully, in the end, I was able to lead the author to realize his mistake, and he is going to fix this DST bug.</p>
 
