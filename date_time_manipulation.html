@@ -1,4 +1,35 @@
-<h1>Date and Time Manipulation</h1>
+<style>
+quote{
+    background:#eeffe6;
+    color: #000;
+    display:block;
+    padding:10px;
+    margin:20px;
+    border-left:10px solid #e6ffb3;
+    font-size:medium!important;
+}
+
+quote p{
+    font-size:medium!important;
+}
+
+code{
+    background:#f2f2f2;
+    color: #000;
+    display:block;
+    margin:20px;
+    padding:10px;
+    font-family: monospace;
+    border-left:10px solid #999;
+    white-space: pre;
+    font-size:medium!important;
+}
+
+img.custom{
+width: 100%;
+}
+</style>
+
 <p>Why would anyone write a blog post about time manipulation? We all understand time… 24 hours a day, 7 days a week, right?</p>
 
 <p><strong><em>LIES!</em></strong> The truth is, time is a mess, an arbitrary cyclic cascading relative political mess, and it just gets worse as time passes and more exceptions are made to previously established rules.</p>
@@ -64,17 +95,17 @@
 
 <p><a href="https://en.wikipedia.org/wiki/Time_zone">Timezones</a> were created to manage that complexity. When you cross a threshold for a time-zone, you either move forward or backwards by some arbitrary amount of time, depending on your direction of travel, and where you’re moving to/from. We all understand that, and agree upon it, <em>mostly</em>.</p>
 
-<blockquote><p>Most of the time zones on land are offset from Coordinated Universal Time (UTC) by a whole number of hours (UTC−12 to UTC+14), but a few zones are offset by 30 or 45 minutes (for example Newfoundland Standard Time is UTC−03:30, Nepal Standard Time is UTC+05:45, and Indian Standard Time is UTC+05:30). Some higher latitude and temperate zone countries use daylight saving time for part of the year, typically by adjusting local clock time by an hour.</p></blockquote>
+<quote><p>Most of the time zones on land are offset from Coordinated Universal Time (UTC) by a whole number of hours (UTC−12 to UTC+14), but a few zones are offset by 30 or 45 minutes (for example Newfoundland Standard Time is UTC−03:30, Nepal Standard Time is UTC+05:45, and Indian Standard Time is UTC+05:30). Some higher latitude and temperate zone countries use daylight saving time for part of the year, typically by adjusting local clock time by an hour.</p></quote>
 
 <p>So, we have local time everywhere with a mess of complexity and arbitrary offsets from local time, or roughly local time everywhere, with known offsets from a standard epoch. <strong>I’ll take the latter, please, thanks.</strong></p>
 
 <p>If you’re more visual-minded, consider this example of the various local times prior to establishment of UTC:<br/><br/>
 
-<img title="" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Universal_Dial_Plate_or_Times_of_all_Nations%2C_1854.jpg/885px-Universal_Dial_Plate_or_Times_of_all_Nations%2C_1854.jpg" alt="localtime example" /></p>
+<img class="custom" title="localtime example" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Universal_Dial_Plate_or_Times_of_all_Nations%2C_1854.jpg/885px-Universal_Dial_Plate_or_Times_of_all_Nations%2C_1854.jpg" alt="localtime example" /></p>
 
 <p>Juxtaposed with this UTC Map:<br/><br/>
 
-<img title="" src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Standard_World_Time_Zones.png" alt="UTC Map" />
+<img class="custom" title="UTC Map" src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Standard_World_Time_Zones.png" alt="UTC Map" />
 </p>
 
 <hr />
@@ -139,7 +170,7 @@
 
 <h3 id="pythons-datetime-module">Python’s <a href="https://docs.python.org/3/library/datetime.html">datetime</a> module</h3>
 
-<blockquote>
+<quote>
 <p>The datetime module supplies classes for manipulating dates and times in both simple and complex ways. While date and time arithmetic is supported, the focus of the implementation is on efficient attribute extraction for output formatting and manipulation. For related functionality, see also the time and calendar modules.</p>
 
 <p>There are two kinds of date and time objects: “naive” and “aware”.</p>
@@ -151,10 +182,10 @@
 <p>For applications requiring aware objects, datetime and time objects have an optional time zone information attribute, tzinfo, that can be set to an instance of a subclass of the abstract tzinfo class. These tzinfo objects capture information about the offset from UTC time, the time zone name, and whether Daylight Saving Time is in effect. Note that no concrete tzinfo classes are supplied by the datetime module. Supporting timezones at whatever level of detail is required is up to the application. The rules for time adjustment across the world are more political than rational, and there is no standard suitable for every application.</p>
 
 <p>[1] If, that is, we ignore the effects of Relativity</p>
-</blockquote>
+</quote>
 
 <p><strong>Caveats:</strong></p>
-<blockquote><p>Unlike the time module, the datetime module does not support leap seconds.</p></blockquote>
+<quote><p>Unlike the time module, the datetime module does not support leap seconds.</p></quote>
 
 <h3 id="leap-seconds-not-going-there">Leap Seconds (not going there)</h3>
 
@@ -170,22 +201,24 @@
 <p>It’s all relative… What if you’re tracking time for a satellite, relative to a ground station? Maybe we’ll address these in another blog post, but for now, we’re going to focus on Daylight Savings Time, time-zones, month bounds, and off-by-one errors, because these are the most common mistakes I see.</p>
 
 <h3 id="common-misconception">Common misconception</h3>
-<blockquote><p>You can’t handle timezones properly with the standard library.</p>
-<pre class="brush: python;">    &gt;&gt;&gt; d = delorean.Delorean(datetime(2013, 3, 31, 1, 30), 'Europe/Paris')
+<quote><p>You can’t handle timezones properly with the standard library.</p>
+<code>
+    &gt;&gt;&gt; d = delorean.Delorean(datetime(2013, 3, 31, 1, 30), 'Europe/Paris')
     &gt;&gt;&gt; d.datetime.isoformat()
     '2013-03-31T01:30:00+01:00'
     &gt;&gt;&gt; d = d + timedelta(hours=1)
     &gt;&gt;&gt; d.datetime.isoformat()
     '2013-03-31T02:30:00+01:00'
-</pre>
-<pre class="brush: python;">    &gt;&gt;&gt; d = pendulum.create(2013, 3, 31, 1, 30, tz='Europe/Paris')
+</code>
+<code>
+    &gt;&gt;&gt; d = pendulum.create(2013, 3, 31, 1, 30, tz='Europe/Paris')
     &gt;&gt;&gt; d.isoformat()
     '2013-03-31T01:30:00+01:00'
     &gt;&gt;&gt; d = d + timedelta(hours=1)
     &gt;&gt;&gt; d.isoformat()
     '2013-03-31T03:30:00+02:00'
-</pre>
-</blockquote>
+</code>
+</quote>
 
 <p>For any seasoned Python developers, the flaw here is likely obvious…</p>
 
@@ -199,19 +232,20 @@
 
 <p>Using UTC is pretty much standard practice, and for good reason!</p>
 
-<p>W3C recommends <a href="https://www.w3.org/TR/timezone/">to always use UTC whenever possible</a>:<br/>
-<blockquote><p>Date and time values based on incremental time are time-zone-independent, since at any given moment it is the same time in UTC everywhere: the values can be transformed for display for any particular time zone offset, but the value itself is not tied to a specific location.
-It is good practice to use an explicit zone offset wherever possible. If one is not available, best practice is to use UTC as the implicit zone offset for conversions of this nature. This is because the values are exactly centered in the range of possibilities and because representation internally (as computer time) is usually based on UTC. Since a single reference point has been used it may be possible to unwind the change later even if erroneous conversion takes place. When working with multiple documents from various sources, the “implicit” offset of the document may vary widely from that of the implementation doing the processing. If UTC is widely used, the chances of error are reduced.</p></blockquote></p>
+<p>W3C recommends <a href="https://www.w3.org/TR/timezone/">to always use UTC whenever possible</a>:</p>
+<quote><p>Date and time values based on incremental time are time-zone-independent, since at any given moment it is the same time in UTC everywhere: the values can be transformed for display for any particular time zone offset, but the value itself is not tied to a specific location.</p>
+<p>It is good practice to use an explicit zone offset wherever possible. If one is not available, best practice is to use UTC as the implicit zone offset for conversions of this nature. This is because the values are exactly centered in the range of possibilities and because representation internally (as computer time) is usually based on UTC. Since a single reference point has been used it may be possible to unwind the change later even if erroneous conversion takes place. When working with multiple documents from various sources, the “implicit” offset of the document may vary widely from that of the implementation doing the processing. If UTC is widely used, the chances of error are reduced.</p></quote>
 
-<p><a href="https://msdn.microsoft.com/en-us/library/bb397769.aspx">and Microsoft</a>:<br/>
-<blockquote><p>Coordinated Universal Time (UTC) is a high-precision, atomic time standard. The world’s time zones are expressed as positive or negative offsets from UTC. Thus, UTC provides a kind of time-zone free or time-zone neutral time. The use of UTC time is recommended when a date and time’s portability across computers is important. […] Converting individual time zones to UTC makes time comparisons easy.</p></blockquote></p>
+<p><a href="https://msdn.microsoft.com/en-us/library/bb397769.aspx">and Microsoft</a>:</p>
+<quote><p>Coordinated Universal Time (UTC) is a high-precision, atomic time standard. The world’s time zones are expressed as positive or negative offsets from UTC. Thus, UTC provides a kind of time-zone free or time-zone neutral time. The use of UTC time is recommended when a date and time’s portability across computers is important. […] Converting individual time zones to UTC makes time comparisons easy.</p></quote>
 
-<p><a href="https://docs.djangoproject.com/en/1.10/topics/i18n/timezones/">and Django</a>:<br/>
-<blockquote><p>Even if your website is available in only one time zone, it’s still good practice to store data in UTC in your database. The main reason is Daylight Saving Time (DST). Many countries have a system of DST, where clocks are moved forward in spring and backward in autumn. If you’re working in local time, you’re likely to encounter errors twice a year, when the transitions happen. […] This probably doesn’t matter for your blog, but it’s a problem if you over-bill or under-bill your customers by one hour, twice a year, every year. The solution to this problem is to use UTC in the code and use local time only when interacting with end users.</p></blockquote></p>
+<p><a href="https://docs.djangoproject.com/en/1.10/topics/i18n/timezones/">and Django</a>:</p>
+<quote><p>Even if your website is available in only one time zone, it’s still good practice to store data in UTC in your database. The main reason is Daylight Saving Time (DST). Many countries have a system of DST, where clocks are moved forward in spring and backward in autumn. If you’re working in local time, you’re likely to encounter errors twice a year, when the transitions happen. […] This probably doesn’t matter for your blog, but it’s a problem if you over-bill or under-bill your customers by one hour, twice a year, every year. The solution to this problem is to use UTC in the code and use local time only when interacting with end users.</p></quote>
 
 <h3 id="proof-that-it-works">Proof that it works</h3>
 <p>I went on to explain this to the author of Pendulum, with examples:</p>
-<pre class="brush: python;">    &gt;&gt;&gt; paris_time = Delorean(datetime(2013, 3, 31, 1, 30), 'Europe/Paris')
+<code>
+    &gt;&gt;&gt; paris_time = Delorean(datetime(2013, 3, 31, 1, 30), 'Europe/Paris')
     &gt;&gt;&gt; paris_time_utc = paris_time.shift('utc')
     &gt;&gt;&gt; paris_time_utc_delta = paris_time_utc.datetime + timedelta(hours=1)
     &gt;&gt;&gt; tz_aware_delta = Delorean(paris_time_utc_delta).shift('Europe/Paris')
@@ -221,11 +255,11 @@ It is good practice to use an explicit zone offset wherever possible. If one is 
     &gt;&gt;&gt; 
     &gt;&gt;&gt; tz_aware_delta
     Delorean(datetime=2013-03-31 03:30:00+02:00, timezone=Europe/Paris)
-</pre>
+</code>
 
 <p>To which he responded:</p>
 
-<blockquote><p>I just don’t agree, even though it simplifies a lot datetime operations.</p></blockquote>
+<quote><p>I just don’t agree, even though it simplifies a lot datetime operations.</p></quote>
 
 <p>Yep, friends, it makes it simple because that’s the way you’re supposed to do it! Why fight it? Embrace it. Let it wash over you in its wonderful simplicity.</p>
 
@@ -237,52 +271,56 @@ It is good practice to use an explicit zone offset wherever possible. If one is 
 
 <p><a href="https://pendulum.eustace.io/">Pendulum</a> aims to fully replace datetime, timedelta, pytz, dateutil, and Delorean in one fell swoop. Never mind the blatant disregard for Unix philosophy, however, it seems the author thinks all the other solutions are broken. That seems a little far-fetched doesn’t it? Is it likely that so many other developers who use other libraries are wrong, and nobody noticed? Or is it likely that an individual is misunderstanding something? Let’s not forget how hard time is… and how easy it is to mess up.</p>
 
-<p>The Pendulum <a href="https://pendulum.eustace.io/faq/">FAQ</a> states this at the bottom:<br/>
-<blockquote><p>Delorean’s epoch() assumes UTC and doesn’t[sic] support specifying a timezone</p></blockquote></p>
+<p>The Pendulum <a href="https://pendulum.eustace.io/faq/">FAQ</a> states this at the bottom:</p>
+<quote><p>Delorean’s epoch() assumes UTC and doesn’t[sic] support specifying a timezone</p></quote>
 
 <p>Huh? Why would anyone want to change the epoch timezone? The epoch <em>is UTC</em>, it doesn’t change depending on locality. It’s the same time, everywhere, always, in UTC.</p>
 
-<p>He elaborated:<br/>
-<blockquote><p>there is no way in delorean to get a datetime corresponding to a timestamp in a specific timezone like the stdlib fromtimestamp</p></blockquote></p>
+<p>He elaborated:</p>
+<quote><p>there is no way in delorean to get a datetime corresponding to a timestamp in a specific timezone like the stdlib fromtimestamp</p></quote>
 
 <p>Well, first of all, why use Delorean for something the standard library can do on its own?</p>
 
 <p>And secondly, this assertion is patently false, as shown below. Delorean works just fine for this task:<br/>
-<pre class="brush: python;">    &gt;&gt;&gt; delorean.epoch(1477459754).shift('US/Pacific')
+<code>
+    &gt;&gt;&gt; delorean.epoch(1477459754).shift('US/Pacific')
     Delorean(datetime=2016-10-25 22:29:14-07:00, timezone=US/Pacific)
 
     &gt;&gt;&gt; delorean.epoch(1477459754).shift('US/Pacific').datetime
     datetime.datetime(2016, 10, 25, 22, 29, 14, tzinfo=&lt;DstTzInfo 'US/Pacific' PDT-1 day, 17:00:00 DST&gt;)
-</pre></p>
+</code></p>
 
 <p>Finally, the author admitted that he did not understand the purpose of Delorean until now, and assumed it was supposed to replace the stdlibs, like his library.</p>
 
 <p>However, he still insisted that Delorean was wrong, and his library was correct, and went on to try to show me how:</p>
 
-<blockquote>
+<quote>
 <p>
-<pre class="brush: python;">    &gt;&gt;&gt; d = delorean.Delorean(datetime(1940, 7, 1), 'Europe/Amsterdam')
+<code>
+    &gt;&gt;&gt; d = delorean.Delorean(datetime(1940, 7, 1), 'Europe/Amsterdam')
     &gt;&gt;&gt; d.datetime.dst() // timedelta(minutes=1)
     100
-</pre></p>
+</code></p>
 <p>This is wrong, it should be 120. And using UTC will not fix that.</p>
-<p><pre class="brush: python;">    &gt;&gt;&gt; d = delorean.Delorean(datetime(1940, 7, 1), 'UTC').shift('Europe/Amsterdam')
+<p><code>
+    &gt;&gt;&gt; d = delorean.Delorean(datetime(1940, 7, 1), 'UTC').shift('Europe/Amsterdam')
     &gt;&gt;&gt; d.datetime.dst() // timedelta(minutes=1)
     100
-</pre></p>
+</code></p>
 <p>In this case pendulum behaves properly:</p>
-<p><pre class="brush: python;">    &gt;&gt;&gt; d = pendulum.create(1940, 7, 1, tz='Europe/Amsterdam')
+<p><code>
+    &gt;&gt;&gt; d = pendulum.create(1940, 7, 1, tz='Europe/Amsterdam')
     &gt;&gt;&gt; d.dst() // timedelta(minutes=1)
     120
-</pre></p>
-<p>These case are not widespread thankfully but I thought I’d mention it.</p></blockquote>
+</code></p>
+<p>These case are not widespread thankfully but I thought I’d mention it.</p></quote>
 
 <h3 id="something-is-definitely-wonky-here">Something is definitely wonky, here.</h3>
 <p>This is a perfect example of how weird time is! <em>Yes!</em></p>
 
 <p>First, let’s figure out what we should expect here. We can reference the <a href="https://www.timeanddate.com/time/change/netherlands/amsterdam?year=1940">Amsterdam DST schedule for the 1940s</a>.</p>
 
-<blockquote><p>May 16, 1940 - Daylight Saving Time Started When local standard time was about to reach Thursday, May 16, 1940, 12:00:00 Midnight clocks were turned forward 1:40 hour to Thursday, May 16, 1940, 1:40:00 AM local daylight time instead</p>
+<quote><p>May 16, 1940 - Daylight Saving Time Started When local standard time was about to reach Thursday, May 16, 1940, 12:00:00 Midnight clocks were turned forward 1:40 hour to Thursday, May 16, 1940, 1:40:00 AM local daylight time instead</p>
 <table>
 <thead>
 <tr>
@@ -309,7 +347,7 @@ It is good practice to use an explicit zone offset wherever possible. If one is 
 </tr>
 </tbody>
 </table>
-</blockquote>
+</quote>
 
 <p>Hey, wait a second…<br/><br/>
 <ul>
@@ -323,7 +361,8 @@ It is good practice to use an explicit zone offset wherever possible. If one is 
 
 <p>Let’s try out some more code… Using our rule of thumb to always use UTC when doing time manipulation.</p>
 <p>
-<pre class="brush: python;">    &gt;&gt;&gt; amsterdam = Delorean(datetime(1940, 5, 15), 'Europe/Amsterdam')
+<code>
+    &gt;&gt;&gt; amsterdam = Delorean(datetime(1940, 5, 15), 'Europe/Amsterdam')
     &gt;&gt;&gt; amsterdam
     Delorean(datetime=datetime.datetime(1940, 5, 15, 0, 0), timezone='Europe/Amsterdam')
     &gt;&gt;&gt;
@@ -339,13 +378,14 @@ It is good practice to use an explicit zone offset wherever possible. If one is 
     &gt;&gt;&gt; delta = amsterdam_utc + timedelta(days=901)
     &gt;&gt;&gt; delta.shift('Europe/Amsterdam')
     Delorean(datetime=datetime.datetime(1942, 11, 2, 1, 40), timezone='Europe/Amsterdam')
-</pre></p>
+</code></p>
 <p>Now approaching the DST transition…</p>
 <p>
-<pre class="brush: python;">    &gt;&gt;&gt; delta = amsterdam_utc + timedelta(days=902)
+<code>
+    &gt;&gt;&gt; delta = amsterdam_utc + timedelta(days=902)
     &gt;&gt;&gt; delta.shift('Europe/Amsterdam')
     Delorean(datetime=datetime.datetime(1942, 11, 3, 0, 40), timezone='Europe/Amsterdam')
-</pre></p>
+</code></p>
 <p>It works just fine! The results when using Delorean are in fact correct and as expected. Thankfully, in the end, I was able to lead the author to realize his mistake, and he is going to fix this DST bug.</p>
 
 <hr />
@@ -389,9 +429,9 @@ It is good practice to use an explicit zone offset wherever possible. If one is 
 <h3 id="crazy-enterprise-time-hacks">Crazy Enterprise Time Hacks</h3>
 <p>Here’s an example of some of the craziness that people come up with as work-arounds for weird time disparities on real-time operating systems (or real-ish time, think ERP software, etc…):</p>
 
-<blockquote><p><a href="https://en.wikipedia.org/wiki/OpenVMS">OpenVMS</a> is a multi-user, multiprocessing virtual memory-based operating system (OS) designed for use in time sharing, batch processing, and transaction processing. When process priorities are suitably adjusted, it may approach real-time operating system characteristics. The system offers high availability through clustering and the ability to distribute the system over multiple physical machines. This allows the system to be tolerant against disasters that may disable individual data-processing facilities.</p>
+<quote><p><a href="https://en.wikipedia.org/wiki/OpenVMS">OpenVMS</a> is a multi-user, multiprocessing virtual memory-based operating system (OS) designed for use in time sharing, batch processing, and transaction processing. When process priorities are suitably adjusted, it may approach real-time operating system characteristics. The system offers high availability through clustering and the ability to distribute the system over multiple physical machines. This allows the system to be tolerant against disasters that may disable individual data-processing facilities.</p>
 
-<p>OpenVMS represents system time as the 64-bit number of 100 nanosecond intervals (that is, ten million units per second; also known as a ‘clunk’[41][42]) since the epoch. The epoch of OpenVMS is midnight preceding November 17, 1858, which is the start of Modified Julian Day numbering. The clock is not necessarily updated every 100 ns; for example, systems with a 100 Hz interval timer simply add 100000 to the value every hundredth of a second. The operating system includes a mechanism to adjust for hardware timekeeping drift; when calibrated against a known time standard, it easily achieves an accuracy better than 0.01%. All OpenVMS hardware platforms derive timekeeping from an internal clock not associated with the AC supply power frequency.</p></blockquote>
+<p>OpenVMS represents system time as the 64-bit number of 100 nanosecond intervals (that is, ten million units per second; also known as a ‘clunk’[41][42]) since the epoch. The epoch of OpenVMS is midnight preceding November 17, 1858, which is the start of Modified Julian Day numbering. The clock is not necessarily updated every 100 ns; for example, systems with a 100 Hz interval timer simply add 100000 to the value every hundredth of a second. The operating system includes a mechanism to adjust for hardware timekeeping drift; when calibrated against a known time standard, it easily achieves an accuracy better than 0.01%. All OpenVMS hardware platforms derive timekeeping from an internal clock not associated with the AC supply power frequency.</p></quote>
 
 <p>The way they compensate? Increase or slow down the clock speed.</p>
 
@@ -402,8 +442,8 @@ It is good practice to use an explicit zone offset wherever possible. If one is 
 <h2 id="tz-database-nerd-humor">TZ Database Nerd Humor</h2>
 
 <p>I leave you with some notes from the maintainers of the timezone database:</p>
-<blockquote><p>Shanks writes that Michigan started using standard time on 1885-09-18, but Howse writes (pp 124-125, referring to Popular Astronomy, 1901-01) that Detroit kept local time until 1900 when the City Council decreed that clocks should be put back twenty-eight minutes to Central Standard Time. Half the city obeyed, half refused. After considerable debate, the decision was rescinded and the city reverted to Sun time. A derisive offer to erect a sundial in front of the city hall was referred to the Committee on Sewers. Then, in 1905, Central time was adopted by city vote.</p>
+<quote><p>Shanks writes that Michigan started using standard time on 1885-09-18, but Howse writes (pp 124-125, referring to Popular Astronomy, 1901-01) that Detroit kept local time until 1900 when the City Council decreed that clocks should be put back twenty-eight minutes to Central Standard Time. Half the city obeyed, half refused. After considerable debate, the decision was rescinded and the city reverted to Sun time. A derisive offer to erect a sundial in front of the city hall was referred to the Committee on Sewers. Then, in 1905, Central time was adopted by city vote.</p>
 
 <p>Pam Belluck reported in the New York Times (2001-01-31) that the Indiana Legislature is considering a bill to adopt DST statewide. Her article mentioned Vevay, whose post office observes a different time zone from Danner’s Hardware across the street.</p>
 
-<p>The most interesting region I have found consists of three towns on the southern coast of Australia, population 10 at last report, along with 50,000 sheep, about 100 kilometers long and 40 kilometers into the continent. The primary town is Madura, with the other towns being Mundrabilla and Eucla. According to the sheriff of Madura, the residents got tired of having to change the time so often, as they are located in a strip overlapping the border of South Australia and Western Australia. South Australia observes daylight saving time; Western Australia does not. The two states are one and a half hours apart. The residents decided to forget about this nonsense of changing the clock so much and set the local time 20 hours and 45 minutes from the international date line, or right in the middle of the time of South Australia and Western Australia.</p></blockquote>
+<p>The most interesting region I have found consists of three towns on the southern coast of Australia, population 10 at last report, along with 50,000 sheep, about 100 kilometers long and 40 kilometers into the continent. The primary town is Madura, with the other towns being Mundrabilla and Eucla. According to the sheriff of Madura, the residents got tired of having to change the time so often, as they are located in a strip overlapping the border of South Australia and Western Australia. South Australia observes daylight saving time; Western Australia does not. The two states are one and a half hours apart. The residents decided to forget about this nonsense of changing the clock so much and set the local time 20 hours and 45 minutes from the international date line, or right in the middle of the time of South Australia and Western Australia.</p></quote>
