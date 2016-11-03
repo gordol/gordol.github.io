@@ -109,15 +109,14 @@ td {
         <ul>
             <li><a href="#of-glass-houses-and-stone-throwing">Of glass houses and stone throwing</a></li>
             <li><a href="#innovation-is-critical-but-be-careful">Innovation is critical, but be careful</a></li>
-            <li><a href="#easy-mistakes-mean-common-problems">Easy mistakes mean common problems</a>
+            <li><a href="#easy-mistakes-mean-common-problems">Easy mistakes mean common problems</a></li>
+            <li><a href="#notorious-time-bugs">Notorious Time Bugs</a></li>
                 <ul>
                     <li><a href="#microsoft">Microsoft</a></li>
                     <li><a href="#apple">Apple</a></li>
                     <li><a href="#banks">Banks</a></li>
                     <li><a href="#nasa">NASA</a></li>
                     <li><a href="#air-traffic-control">Air Traffic Control</a></li>
-                    <li><a href="#notorious-time-bugs">Notorious Time Bugs</a></li>
-
                 </ul>
             </li>
             <li><a href="#crazy-enterprise-time-hacks">Crazy Enterprise Time Hacks</a></li>
@@ -452,6 +451,9 @@ Delorean(datetime=datetime.datetime(1942, 11, 3, 0, 40), timezone='Europe/Amster
 <p>Luckily the 11PM bug in greenclock was an <a href="https://github.com/pcdinh/greenclock/issues/4">easy fix</a>. But still further <a href="https://github.com/pcdinh/greenclock/blob/52df4f5bdfae296e01d253ae7a177c7fc90ba6c5/greenclock/__init__.py#L93">datetime issues remain</a>. If you run that on the last day of the month&hellip; <code>ValueError: day is out of range for month</code> Oops!</p>
 
 <p>Unfortunately, it’s not uncommon for many programmers to have major time problems at some point or another, if not repeatedly, depending on the problem domain. Yep, even companies with dedicated QA teams and million multi-dollar budgets.</p>
+
+
+<h3 id='notorious-time-bugs'>Notorious Time Bugs</h3>
 
 <h4 id="microsoft">Microsoft</h4>
 <p>For example, <a href="https://www.cnet.com/news/outlook-new-daylight-saving-time-a-series-of-unfortunate-events/">back in 2007 Microsoft had some Outlook bugs that resulted in events moving to a different day during daylight savings time</a>!</p>
