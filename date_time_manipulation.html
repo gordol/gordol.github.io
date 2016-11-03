@@ -442,15 +442,18 @@ Delorean(datetime=datetime.datetime(1942, 11, 3, 0, 40), timezone='Europe/Amster
 
 <p>Unfortunately, it’s not uncommon for many programmers to have major time problems at some point or another, if not repeatedly, depending on the problem domain. Yep, even companies with dedicated QA teams and million multi-dollar budgets.</p>
 
+
 <p>For example, <a href="https://www.cnet.com/news/outlook-new-daylight-saving-time-a-series-of-unfortunate-events/">back in 2007 Microsoft had some Outlook bugs that resulted in events moving to a different day during daylight savings time</a>!</p>
 
-<p>In 2005 US Congress voted to <a href="http://www.timetemperature.com/tzus/daylight_saving_time_extended.shtml">change daylight savings time</a>, and more recently, in 2015, Arizona decided arbitrarily to <a href="http://www.usatoday.com/story/news/nation/2015/03/08/no-arizona-daylight-saving-time/24619125/">stop observing daylight savings time</a>. This happens all over the world, constantly, at random. It’s a mess&hellip; Use UTC to avoid pain!</p>
-
-<p>Time problems also happen in hardware too&hellip; in 2004, <a href="http://spectrum.ieee.org/aerospace/aviation/lost-radio-contact-leaves-pilots-on-their-own">LAX air traffic control lost radio communications with pilots</a> due to a time bug. They have microcontrollers that tick down in milliseconds to keep sync between ATC and the planes. FAA guidelines suggest resetting the clocks every 50 days, giving 3 weeks of time before they would have ran out. However, apparently nobody built in safeguards to prevent that threshold from being met, and chaos ensued (or they probably just switched to air band and did it the old fashioned way, but I digress).</p>
+<p>Microsoft had more bugs again in <a href="https://support.microsoft.com/en-us/kb/2687252">again in 2012</a>, <a href="https://support.microsoft.com/en-us/kb/2800213">again in 2013</a>, and, yep, more <a href="https://support.microsoft.com/en-us/kb/2922223">UTC bugs in 2014</a>.</p>
 
 <p>Apple, too, has had time problems, where, in 2010, <a href="http://www.theregister.co.uk/2010/10/05/iphone_daylight_saving/">alarm times did not update during DST transitions</a>, and it even happens still, <a href="https://www.engadget.com/2013/10/27/ios-daylight-savings-time-bug-strikes-again/">in 2013</a>. Even recently with IOS8 many users have had <a href="http://www.macrumors.com/2015/01/23/ios-8-gmt-calendar-bug/">issues with their calendar app</a>.</p>
 
 <p><a href="http://www.smartcompany.com.au/finance/economy/12681-20100104-businesses-hit-by-bank-of-queensland-eftpos-bug/">In 2010</a> Bank of Queensland had a problem due to an incorrect hexadecimal number conversion routine causing terminals to decline customers’ cards as expired because the terminals jumped from 2010 to 2016.</p>
+
+<p>Time problems also happen in hardware too&hellip; in 2004, <a href="http://spectrum.ieee.org/aerospace/aviation/lost-radio-contact-leaves-pilots-on-their-own">LAX air traffic control lost radio communications with pilots</a> due to a time bug. They have microcontrollers that tick down in milliseconds to keep sync between ATC and the planes. FAA guidelines suggest resetting the clocks every 50 days, giving 3 weeks of time before they would have ran out. However, apparently nobody built in safeguards to prevent that threshold from being met, and chaos ensued (or they probably just switched to air band and did it the old fashioned way, but I digress).</p>
+
+<p>In 2005 US Congress voted to <a href="http://www.timetemperature.com/tzus/daylight_saving_time_extended.shtml">change daylight savings time</a>, and more recently, in 2015, Arizona decided arbitrarily to <a href="http://www.usatoday.com/story/news/nation/2015/03/08/no-arizona-daylight-saving-time/24619125/">stop observing daylight savings time</a>. This happens all over the world, constantly, at random. It’s a mess&hellip; Use UTC to avoid pain!</p>
 
 <p>And finally I can’t help but also point you towards a list of <a href="https://en.wikipedia.org/wiki/Time_formatting_and_storage_bugs">time formatting and storage bugs</a> that are common enough to be listed on Wikipedia. The most notorious one is the Y2K bug, which I’m sure you all are familiar with.</p>
 
