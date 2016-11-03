@@ -438,7 +438,7 @@ Delorean(datetime=datetime.datetime(1942, 11, 3, 0, 40), timezone='Europe/Amster
 
 <p><a href="https://github.com/pcdinh/greenclock">greenclock</a> is a greenlet-based task timer. While testing I was able to reproduce the following exception: <code>ValueError: hour must be in 0..23</code> when using <code>start_at='once'</code> between 2300-2400 hrs.</p>
 
-<p>Luckily the 11PM bug in greenclock was an <a href="https://github.com/pcdinh/greenclock/issues/4">easy fix</a>. But still further <a href="https://github.com/pcdinh/greenclock/blob/52df4f5bdfae296e01d253ae7a177c7fc90ba6c5/greenclock/__init__.py#L93">datetime issues remain</a>. If you run that on the last day of the month&hellip; <code>ValueError: day is out of range for month</code>. Oops!</p>
+<p>Luckily the 11PM bug in greenclock was an <a href="https://github.com/pcdinh/greenclock/issues/4">easy fix</a>. But still further <a href="https://github.com/pcdinh/greenclock/blob/52df4f5bdfae296e01d253ae7a177c7fc90ba6c5/greenclock/__init__.py#L93">datetime issues remain</a>. If you run that on the last day of the month&hellip; <code>ValueError: day is out of range for month</code> Oops!</p>
 
 <p>Unfortunately, it’s not uncommon for many programmers to have major time problems at some point or another, if not repeatedly, depending on the problem domain. Yep, even companies with dedicated QA teams and million multi-dollar budgets.</p>
 
