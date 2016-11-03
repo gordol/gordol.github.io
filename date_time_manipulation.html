@@ -107,9 +107,9 @@ td {
 
 <p>In the early-mid 1880s mechanized rail infrastructure was just beginning to expand. It was difficult to keep time in sync relatively to others when traveling quickly, which, when one really considers it, is a very recent possibility for humans, relative to the rest of history.</p>
 
-<p><a href="https://en.wikipedia.org/wiki/Time_zone">Time zones</a> were created to manage that complexity. When you cross a threshold for a time-zone, you either move forward or backwards by some arbitrary amount of time, depending on your direction of travel, and where you’re moving to/from. We all understand that, and agree upon it, <em>mostly</em>.</p>
+<p><a href="https://en.wikipedia.org/wiki/Time_zone">time-zones</a> were created to manage that complexity. When you cross a threshold for a time-zone, you either move forward or backwards by some arbitrary amount of time, depending on your direction of travel, and where you’re moving to/from. We all understand that, and agree upon it, <em>mostly</em>.</p>
 
-<quote><p>Most of the time zones on land are offset from Coordinated Universal Time (UTC) by a whole number of hours (UTC−12 to UTC+14), but a few zones are offset by 30 or 45 minutes (for example Newfoundland Standard Time is UTC−03:30, Nepal Standard Time is UTC+05:45, and Indian Standard Time is UTC+05:30). Some higher latitude and temperate zone countries use daylight saving time for part of the year, typically by adjusting local clock time by an hour.</p></quote>
+<quote><p>Most of the time-zones on land are offset from Coordinated Universal Time (UTC) by a whole number of hours (UTC−12 to UTC+14), but a few zones are offset by 30 or 45 minutes (for example Newfoundland Standard Time is UTC−03:30, Nepal Standard Time is UTC+05:45, and Indian Standard Time is UTC+05:30). Some higher latitude and temperate zone countries use daylight saving time for part of the year, typically by adjusting local clock time by an hour.</p></quote>
 
 <p>So, we have local time everywhere with a mess of complexity and arbitrary offsets from local time, or roughly local time everywhere, with known offsets from a standard epoch. <strong>I’ll take the latter, please, thanks.</strong></p>
 
@@ -141,7 +141,7 @@ td {
 
 <h3 id="coordinated-universal-time-important-use-it">Coordinated Universal Time &lt;- Important: USE IT!</h3>
 
-<p>The most important standard we’re going to discuss is <a href="https://en.wikipedia.org/wiki/Coordinated_Universal_Time">Coordinated Universal Time</a> aka UTC, which is nice because it doesn’t have time zones, daylight savings time, or other localized variations of time.</p>
+<p>The most important standard we’re going to discuss is <a href="https://en.wikipedia.org/wiki/Coordinated_Universal_Time">Coordinated Universal Time</a> aka UTC, which is nice because it doesn’t have time-zones, daylight savings time, or other localized variations of time.</p>
 
 <p>Note, that there are several variants of Universal Time, and UTC is not necessarily the same as GMT, though they are similar. Technically, UTC is based on <a href="https://en.wikipedia.org/wiki/Universal_Time">UT1</a>. and UT0 is not commonly used these days.</p>
 
@@ -176,7 +176,7 @@ td {
 
 <h3 id="tz-database">TZ Database</h3>
 
-<p>Time zones are represented as an offset from UTC, which are documented in the <a href="https://en.wikipedia.org/wiki/Olson_database">tz database</a>. Thanks to Arthur David Olson, Paul Eggert, and many others from the community, we have this thing. The tz database is actually mildly interesting <a href="https://blog.jonudell.net/2009/10/23/a-literary-appreciation-of-the-olsonzoneinfotz-database/">if you start digging into it</a>. I will put a few humorous examples at the end of this article.</p>
+<p>time-zones are represented as an offset from UTC, which are documented in the <a href="https://en.wikipedia.org/wiki/Olson_database">tz database</a>. Thanks to Arthur David Olson, Paul Eggert, and many others from the community, we have this thing. The tz database is actually mildly interesting <a href="https://blog.jonudell.net/2009/10/23/a-literary-appreciation-of-the-olsonzoneinfotz-database/">if you start digging into it</a>. I will put a few humorous examples at the end of this article.</p>
 
 <h3 id="rtfm">RTFM</h3>
 
@@ -189,11 +189,11 @@ td {
 
 <p>There are two kinds of date and time objects: “naive” and “aware”.</p>
 
-<p>An aware object has sufficient knowledge of applicable algorithmic and political time adjustments, such as time zone and daylight saving time information, to locate itself relative to other aware objects. An aware object is used to represent a specific moment in time that is not open to interpretation [1].</p>
+<p>An aware object has sufficient knowledge of applicable algorithmic and political time adjustments, such as time-zone and daylight saving time information, to locate itself relative to other aware objects. An aware object is used to represent a specific moment in time that is not open to interpretation [1].</p>
 
-<p>A naive object does not contain enough information to unambiguously locate itself relative to other date/time objects. Whether a naive object represents Coordinated Universal Time (UTC), local time, or time in some other time zone is purely up to the program, just like it’s up to the program whether a particular number represents metres, miles, or mass. Naive objects are easy to understand and to work with, at the cost of ignoring some aspects of reality.</p>
+<p>A naive object does not contain enough information to unambiguously locate itself relative to other date/time objects. Whether a naive object represents Coordinated Universal Time (UTC), local time, or time in some other time-zone is purely up to the program, just like it’s up to the program whether a particular number represents metres, miles, or mass. Naive objects are easy to understand and to work with, at the cost of ignoring some aspects of reality.</p>
 
-<p>For applications requiring aware objects, datetime and time objects have an optional time zone information attribute, tzinfo, that can be set to an instance of a subclass of the abstract tzinfo class. These tzinfo objects capture information about the offset from UTC time, the time zone name, and whether Daylight Saving Time is in effect. Note that no concrete tzinfo classes are supplied by the datetime module. Supporting time zones at whatever level of detail is required is up to the application. The rules for time adjustment across the world are more political than rational, and there is no standard suitable for every application.</p>
+<p>For applications requiring aware objects, datetime and time objects have an optional time-zone information attribute, tzinfo, that can be set to an instance of a subclass of the abstract tzinfo class. These tzinfo objects capture information about the offset from UTC time, the time-zone name, and whether Daylight Saving Time is in effect. Note that no concrete tzinfo classes are supplied by the datetime module. Supporting time-zones at whatever level of detail is required is up to the application. The rules for time adjustment across the world are more political than rational, and there is no standard suitable for every application.</p>
 
 <p>[1] If, that is, we ignore the effects of Relativity</p>
 </quote>
@@ -215,7 +215,7 @@ td {
 <p>It’s all relative… What if you’re tracking time for a satellite, relative to a ground station? Maybe we’ll address these in another blog post, but for now, we’re going to focus on Daylight Savings Time, time-zones, month bounds, and off-by-one errors, because these are the most common mistakes I see.</p>
 
 <h3 id="common-misconception">Common misconception</h3>
-<quote><p>You can’t handle time zones properly with the standard library.</p>
+<quote><p>You can’t handle time-zones properly with the standard library.</p>
 <code>&gt;&gt;&gt; d = delorean.Delorean(datetime(2013, 3, 31, 1, 30), 'Europe/Paris')
 &gt;&gt;&gt; d.datetime.isoformat()
 '2013-03-31T01:30:00+01:00'
@@ -245,14 +245,14 @@ td {
 <p>Using UTC is pretty much standard practice, and for good reason!</p>
 
 <p>W3C recommends <a href="https://www.w3.org/TR/timezone/">to always use UTC whenever possible</a>:</p>
-<quote><p>Date and time values based on incremental time are time-zone-independent, since at any given moment it is the same time in UTC everywhere: the values can be transformed for display for any particular time zone offset, but the value itself is not tied to a specific location.</p>
+<quote><p>Date and time values based on incremental time are time-zone-independent, since at any given moment it is the same time in UTC everywhere: the values can be transformed for display for any particular time-zone offset, but the value itself is not tied to a specific location.</p>
 <p>It is good practice to use an explicit zone offset wherever possible. If one is not available, best practice is to use UTC as the implicit zone offset for conversions of this nature. This is because the values are exactly centered in the range of possibilities and because representation internally (as computer time) is usually based on UTC. Since a single reference point has been used it may be possible to unwind the change later even if erroneous conversion takes place. When working with multiple documents from various sources, the “implicit” offset of the document may vary widely from that of the implementation doing the processing. If UTC is widely used, the chances of error are reduced.</p></quote>
 
 <p><a href="https://msdn.microsoft.com/en-us/library/bb397769.aspx">and Microsoft</a>:</p>
-<quote><p>Coordinated Universal Time (UTC) is a high-precision, atomic time standard. The world’s time zones are expressed as positive or negative offsets from UTC. Thus, UTC provides a kind of time-zone free or time-zone neutral time. The use of UTC time is recommended when a date and time’s portability across computers is important. […] Converting individual time zones to UTC makes time comparisons easy.</p></quote>
+<quote><p>Coordinated Universal Time (UTC) is a high-precision, atomic time standard. The world’s time-zones are expressed as positive or negative offsets from UTC. Thus, UTC provides a kind of time-zone free or time-zone neutral time. The use of UTC time is recommended when a date and time’s portability across computers is important. […] Converting individual time-zones to UTC makes time comparisons easy.</p></quote>
 
 <p><a href="https://docs.djangoproject.com/en/1.10/topics/i18n/timezones/">and Django</a>:</p>
-<quote><p>Even if your website is available in only one time zone, it’s still good practice to store data in UTC in your database. The main reason is Daylight Saving Time (DST). Many countries have a system of DST, where clocks are moved forward in spring and backward in autumn. If you’re working in local time, you’re likely to encounter errors twice a year, when the transitions happen. […] This probably doesn’t matter for your blog, but it’s a problem if you over-bill or under-bill your customers by one hour, twice a year, every year. The solution to this problem is to use UTC in the code and use local time only when interacting with end users.</p></quote>
+<quote><p>Even if your website is available in only one time-zone, it’s still good practice to store data in UTC in your database. The main reason is Daylight Saving Time (DST). Many countries have a system of DST, where clocks are moved forward in spring and backward in autumn. If you’re working in local time, you’re likely to encounter errors twice a year, when the transitions happen. […] This probably doesn’t matter for your blog, but it’s a problem if you over-bill or under-bill your customers by one hour, twice a year, every year. The solution to this problem is to use UTC in the code and use local time only when interacting with end users.</p></quote>
 
 <h3 id="proof-that-it-works">Proof that it works</h3>
 <p>I went on to explain this to the author of Pendulum, with examples:</p>
@@ -283,12 +283,12 @@ Delorean(datetime=2013-03-31 03:30:00+02:00, timezone=Europe/Paris)
 <p><a href="https://pendulum.eustace.io/">Pendulum</a> aims to fully replace datetime, timedelta, pytz, dateutil, and Delorean in one fell swoop. Never mind the blatant disregard for Unix philosophy, however, it seems the author thinks all the other solutions are broken. That seems a little far-fetched doesn’t it? Is it likely that so many other developers who use other libraries are wrong, and nobody noticed? Or is it likely that an individual is misunderstanding something? Let’s not forget how hard time is… and how easy it is to mess up.</p>
 
 <p>The Pendulum <a href="https://pendulum.eustace.io/faq/">FAQ</a> states this at the bottom:</p>
-<quote><p>Delorean’s epoch() assumes UTC and doesn’t[sic] support specifying a time zone</p></quote>
+<quote><p>Delorean’s epoch() assumes UTC and doesn’t[sic] support specifying a time-zone</p></quote>
 
-<p>Huh? Why would anyone want to change the epoch time zone? The epoch <em>is UTC</em>, it doesn’t change depending on locality. It’s the same time, everywhere, always, in UTC.</p>
+<p>Huh? Why would anyone want to change the epoch time-zone? The epoch <em>is UTC</em>, it doesn’t change depending on locality. It’s the same time, everywhere, always, in UTC.</p>
 
 <p>He elaborated:</p>
-<quote><p>there is no way in delorean to get a datetime corresponding to a timestamp in a specific time zone like the stdlib fromtimestamp</p></quote>
+<quote><p>there is no way in delorean to get a datetime corresponding to a timestamp in a specific time-zone like the stdlib fromtimestamp</p></quote>
 
 <p>Well, first of all, why use Delorean for something the standard library can do on its own?</p>
 
@@ -400,7 +400,7 @@ Delorean(datetime=datetime.datetime(1942, 11, 3, 0, 40), timezone='Europe/Amster
 <h2 id="summary">Summary</h2>
 <p><strong>Please stop using non-UTC datetimes for your time manipulations. Be explicit. Use UTC.</strong></p>
 
-<p>If you want to build a library that handles this transparently, sweet! Please read the other libraries that already exist, understand them, and if they are so bad that you can’t fix them and must create your own, please, read PEPs <a href="https://www.python.org/dev/peps/pep-0431/">431</a>, <a href="https://www.python.org/dev/peps/pep-0495/">495</a>, and <a href="https://www.python.org/dev/peps/pep-0500/">500</a> before you go any further. PEP 495 is actually <a href="https://bugs.python.org/issue24773">implemented</a>, as of recently. Finally though, leverage the time zone database, and UTC, that’s why they exist. <a href="https://www.python.org/dev/peps/pep-0020/#the-zen-of-python">Simple is better than complex.</a></p>
+<p>If you want to build a library that handles this transparently, sweet! Please read the other libraries that already exist, understand them, and if they are so bad that you can’t fix them and must create your own, please, read PEPs <a href="https://www.python.org/dev/peps/pep-0431/">431</a>, <a href="https://www.python.org/dev/peps/pep-0495/">495</a>, and <a href="https://www.python.org/dev/peps/pep-0500/">500</a> before you go any further. PEP 495 is actually <a href="https://bugs.python.org/issue24773">implemented</a>, as of recently. Finally though, leverage the time-zone database, and UTC, that’s why they exist. <a href="https://www.python.org/dev/peps/pep-0020/#the-zen-of-python">Simple is better than complex.</a></p>
 
 <h3 id="of-glass-houses-and-stone-throwing">Of glass houses and stone throwing</h3>
 <p>The worst part of all this is, the author of Pendulum seems to be on a <a href="http://blog.eustace.io/please-stop-using-arrow.html">crusade</a> against competing libraries.</p>
@@ -448,9 +448,9 @@ Delorean(datetime=datetime.datetime(1942, 11, 3, 0, 40), timezone='Europe/Amster
 
 <h2 id="tz-database-nerd-humor">TZ Database Nerd Humor</h2>
 
-<p>I leave you with some notes from the maintainers of the time zone database:</p>
+<p>I leave you with some notes from the maintainers of the time-zone database:</p>
 <quote><p>Shanks writes that Michigan started using standard time on 1885-09-18, but Howse writes (pp 124-125, referring to Popular Astronomy, 1901-01) that Detroit kept local time until 1900 when the City Council decreed that clocks should be put back twenty-eight minutes to Central Standard Time. Half the city obeyed, half refused. After considerable debate, the decision was rescinded and the city reverted to Sun time. A derisive offer to erect a sundial in front of the city hall was referred to the Committee on Sewers. Then, in 1905, Central time was adopted by city vote.</p>
 
-<p>Pam Belluck reported in the New York Times (2001-01-31) that the Indiana Legislature is considering a bill to adopt DST statewide. Her article mentioned Vevay, whose post office observes a different time zone from Danner’s Hardware across the street.</p>
+<p>Pam Belluck reported in the New York Times (2001-01-31) that the Indiana Legislature is considering a bill to adopt DST statewide. Her article mentioned Vevay, whose post office observes a different time-zone from Danner’s Hardware across the street.</p>
 
 <p>The most interesting region I have found consists of three towns on the southern coast of Australia, population 10 at last report, along with 50,000 sheep, about 100 kilometers long and 40 kilometers into the continent. The primary town is Madura, with the other towns being Mundrabilla and Eucla. According to the sheriff of Madura, the residents got tired of having to change the time so often, as they are located in a strip overlapping the border of South Australia and Western Australia. South Australia observes daylight saving time; Western Australia does not. The two states are one and a half hours apart. The residents decided to forget about this nonsense of changing the clock so much and set the local time 20 hours and 45 minutes from the international date line, or right in the middle of the time of South Australia and Western Australia.</p></quote>
