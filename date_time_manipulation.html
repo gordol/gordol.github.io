@@ -502,6 +502,7 @@ Delorean(datetime=datetime.datetime(1942, 11, 3, 0, 40), timezone='Europe/Amster
     <li>Avoid integer conversion when working around datetime objects.</li>
     <li>If you are doing integer conversions, be very mindful of your problem domain, and signed vs unsigned integer precision. You can mitigate the 2038 bug in some cases by chaging to a signed integer, but if you deal with times before 1970, you're in for a world of pain.</li>
     <li>Do research, read and know what those who came before you have done, and are <a href="https://web.archive.org/web/20150922123604/http://www.elinux.org/images/6/6e/End_of_Time_--_Embedded_Linux_Conference_2015.pdf">working towards</a>.</li>
+    <li>Write automated tests to force out of bound dates to make sure your systems are resilient</li>
     <li>Use UTC! (Sorry, not related to 2038 bug, but I had to throw that one out there again for those of you who skipped to the bottom)</li>
 </ul>
 
