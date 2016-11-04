@@ -8,11 +8,10 @@ ul.custom, ul.custom li{
     margin-bottom: 0;
 }
 
-@media (max-width: 769px) .single-post ul li {
+@media (max-width: 769px) ul.custom, ul.custom li{
     font-size: 1.6em!important;
     margin-bottom: .5em!important;
 }
-
 
 quote{
     background:#fefefe;
@@ -209,7 +208,7 @@ Example of various local times prior to establishment of UTC
 <p>Let’s talk a bit about <a href="https://en.wikipedia.org/wiki/Unix_philosophy">unix philosophy</a>, and why datetime module in Python is the way it is, and the TZ databases exist independently.</p>
 
 <p>The Unix philosophy is this:<br/>
-<ul>
+<ul class='custom'>
  	<li>Write programs that do one thing and do it well.</li>
  	<li>Write programs to work together.</li>
  	<li>Write programs to handle text streams, because that is a universal interface.</li>
@@ -243,7 +242,7 @@ Example of various local times prior to establishment of UTC
 <h3 id="leap-seconds-not-going-there">Leap Seconds (not going there)</h3>
 
 <p>Oh, yes, speaking of leap seconds, we’re not even going to go there in this blog post; just as complex as large time scales are, so are small time scales.<br/>
-<ul>
+<ul class='custom'>
  	<li>How accurate do you need to be?</li>
  	<li>Can you be more accurate than your system clock?</li>
  	<li>Can you fit that accuracy within X bits of signed/unsigned floating point integers?</li>
@@ -399,7 +398,7 @@ datetime.datetime(2016, 10, 25, 22, 29, 14, tzinfo=&lt;DstTzInfo 'US/Pacific' PD
 </quote>
 
 <p>Hey, wait a second&hellip;<br/><br/>
-<ul>
+<ul class='custom'>
  	<li>120 minutes is 2 hours</li>
  	<li>100 minutes is 1 hour and 40 minutes.</li>
 </ul><p/>
@@ -505,7 +504,7 @@ Delorean(datetime=datetime.datetime(1942, 11, 3, 0, 40), timezone='Europe/Amster
 
 <p>Here are some examples of things you can do now to prevent pain later:
 
-<ul>
+<ul class='custom'>
     <li>Use datetime fields instead of timestamps</li>
     <li>When you do use timestamps, Use at least 64-bit fields</li>
     <li>Use modern filesystems that don't store metadata with only 32-bit timestamps</li>
