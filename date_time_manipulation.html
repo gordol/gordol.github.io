@@ -100,10 +100,9 @@ table td {
 <h2>Content</h2>
 <ul class='custom'>
     <li><a href="#brief-history-of-time-and-necessity-of-standardization">Brief History of Time and Necessity of Standardization</a></li>
-    <li><a href="#time-and-date-standards">Time and Date Standards</a>
+    <li><a href="#standards">Standards</a>
         <ul>
             <li><a href="#epoch">Epoch</a></li>
-            <li><a href="#julian-day">Julian Day</a></li>
             <li><a href="#coordinated-universal-time-important-use-it">Coordinated Universal Time &lt;- Important: USE IT!</a>
                 <ul>
                     <li><a href="#ut0">UT0</a></li>
@@ -111,13 +110,13 @@ table td {
                     <li><a href="#utc">UTC</a></li>
                 </ul>
             </li>
+            <li><a href="#unix-philosophy">Unix philosophy</a></li>
+            <li><a href="#tz-database">TZ Database</a></li>
         </ul>
     </li>
     <li><a href="#programming-problems">Programming Problems</a>
         <ul>
             <li><a href="#backstory">Backstory</a></li>
-            <li><a href="#unix-philosophy">Unix philosophy</a></li>
-            <li><a href="#tz-database">TZ Database</a></li>
             <li><a href="#rtfm">RTFM</a></li>
             <li><a href="#pythons-datetime-module">Python’s datetime module</a></li>
             <li><a href="#leap-seconds-not-going-there">Leap Seconds (not going there)</a></li>
@@ -183,20 +182,11 @@ Example of various local times prior to establishment of UTC
 
 <hr />
 
-<h2 id="time-and-date-standards">Time and Date Standards</h2>
+<h2 id="standards">Standards</h2>
 <p>As programmers, we are all logically minded, and can understand the necessity to agree upon standards.</p>
 
 <h3 id="epoch">Epoch</h3>
 <p><a href="https://en.wikipedia.org/wiki/Epoch_%28reference_date%29">Epoch</a> just means “reference date”.</p>
-
-<h3 id="julian-day">Julian Day</h3>
-<p><a href="https://en.wikipedia.org/wiki/Julian_day">Julian day</a> is the continuous count of days since the beginning of the Julian Period used primarily by astronomers.</p>
-
-<p>The <strong>Julian Day Number (JDN)</strong> is the integer assigned to a whole solar day in the Julian day count starting from noon Greenwich Mean Time, with Julian day number 0 assigned to the day starting at noon on January 1, 4713 BC, proleptic Julian calendar (November 24, 4714 BC, in the proleptic Gregorian calendar), a date at which three multi-year cycles started (which are: Indiction, Solar, and Lunar cycles) and which preceded any historical dates. For example, the Julian day number for the day starting at 12:00 UT on January 1, 2000, was 2,451,545.</p>
-
-<p>The <strong>Julian date (JD)</strong> of any instant is the Julian day number for the preceding noon in Greenwich Mean Time plus the fraction of the day since that instant. Julian dates are expressed as a Julian day number with a decimal fraction added. For example, the Julian Date for 00:30:00.0 UT January 1, 2013, is 2,456,293.520833.</p>
-
-<p>The <strong>Julian Period</strong> is a chronological interval of 7980 years beginning 4713 BC. It has been used by historians since its introduction in 1583 to convert between different calendars. The Gregorian year 2016 is year 6729 of the current Julian Period. The next Julian Period begins in the year AD 3268.</p>
 
 <h3 id="coordinated-universal-time-important-use-it">Coordinated Universal Time &lt;- Important: USE IT!</h3>
 
@@ -213,13 +203,8 @@ Example of various local times prior to establishment of UTC
 <h4 id="utc">UTC</h4>
 <p>UTC (Coordinated Universal Time) is an atomic time scale that approximates UT1. It is the international standard on which civil time is based. It ticks SI seconds, in step with TAI. It usually has 86,400 SI seconds per day but is kept within 0.9 seconds of UT1 by the introduction of occasional intercalary leap seconds. As of 2015, these leaps have always been positive (the days which contained a leap second were 86,401 seconds long). Whenever a level of accuracy better than one second is not required, UTC can be used as an approximation of UT1.</p>
 
-<hr />
-
-<h2 id="programming-problems">Programming Problems</h2>
-<h3 id="backstory">Backstory</h3>
-<p>So, primed with this knowledge, let’s look at some actual programming problems. Our target language here is Python, but these patterns are language agnostic.</p>
-
-<p>Recently, I got into a long discussion with the author of a Python time manipulation library&hellip; That’s what encouraged me to write this blog post.</p>
+<h3 id="tz-database">TZ Database</h3>
+<p>Time-zones are represented as an offset from UTC, which are documented in the <a href="https://en.wikipedia.org/wiki/Olson_database">tz database</a>. Thanks to Arthur David Olson, Paul Eggert, and many others from the community, we have this thing. The tz database is actually mildly interesting <a href="https://blog.jonudell.net/2009/10/23/a-literary-appreciation-of-the-olsonzoneinfotz-database/">if you start digging into it</a>. I will put a few humorous examples at the end of this article.</p>
 
 <h3 id="unix-philosophy">Unix philosophy</h3>
 <p>Let’s talk a bit about <a href="https://en.wikipedia.org/wiki/Unix_philosophy">unix philosophy</a>, and why datetime module in Python is the way it is, and the TZ databases exist independently.</p>
@@ -233,9 +218,13 @@ Example of various local times prior to establishment of UTC
 
 <p>The emphasis here is: do one thing, and do it well, and write programs to work together. Universal interfaces, like UTC, are cool, too!</p>
 
-<h3 id="tz-database">TZ Database</h3>
+<hr />
 
-<p>Time-zones are represented as an offset from UTC, which are documented in the <a href="https://en.wikipedia.org/wiki/Olson_database">tz database</a>. Thanks to Arthur David Olson, Paul Eggert, and many others from the community, we have this thing. The tz database is actually mildly interesting <a href="https://blog.jonudell.net/2009/10/23/a-literary-appreciation-of-the-olsonzoneinfotz-database/">if you start digging into it</a>. I will put a few humorous examples at the end of this article.</p>
+<h2 id="programming-problems">Programming Problems</h2>
+<h3 id="backstory">Backstory</h3>
+<p>So, primed with this knowledge, let’s look at some actual programming problems. Our target language here is Python, but these patterns are language agnostic.</p>
+
+<p>Recently, I got into a long discussion with the author of a Python time manipulation library&hellip; That’s what encouraged me to write this blog post.</p>
 
 <h3 id="rtfm">RTFM</h3>
 
