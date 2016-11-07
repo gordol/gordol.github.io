@@ -3,18 +3,18 @@
 
 <style>
 
-article p{
+article-custom p{
     font-weight: 400!important;
 }
 
 
-article  a {
+article-custom  a {
     color: #376911!important;
     font-weight: 400!important;
     text-decoration: underline!important;
 }
 
-article  a:hover{
+article-custom  a:hover{
     text-decoration: none!important;
 }
 
@@ -87,7 +87,7 @@ table td {
 
 </style>
 
-<article>
+<article-custom>
 
 <h1>Date and Time Manipulation</h1>
 
@@ -285,7 +285,8 @@ Example of various local times prior to establishment of UTC
 
 <p>That's it! It’s that simple. All time manipulation operations should be done in a common time-zone, preferably UTC, and then time should be localized, if desired, when displaying to end-users. This is a notoriously common pain point for many programmers, both experienced, and new. It is very difficult to manage the state of time-zone transitions when doing manipulations in local time, and this simple pattern will save you much grief, I promise!</p>
 
-<p>You don’t just have to take my word for it either&hellip;</p>
+<p>UTC isn't a silver bullet, and doesn't solve all of the problems, but it's an important foundation; you don’t just have to take my word for it either&hellip;</p>
+
 
 <h3 id="development-community-guidelines">Development Community Guidelines</h3>
 
@@ -331,7 +332,7 @@ Delorean(datetime=2013-03-31 03:30:00+02:00, timezone=Europe/Paris)
 <p><a href="https://pendulum.eustace.io/">Pendulum</a> aims to fully replace datetime, timedelta, pytz, dateutil, and Delorean in one fell swoop. Never mind the blatant disregard for Unix philosophy, however, it seems the author thinks all the other solutions are broken. That seems a little far-fetched doesn’t it? Is it likely that so many other developers who use other libraries are wrong, and nobody noticed? Or is it likely that an individual is misunderstanding something? Let’s not forget how hard time is&hellip; and how easy it is to mess up.</p>
 
 <p>The Pendulum <a href="https://pendulum.eustace.io/faq/">FAQ</a> states this at the bottom:</p>
-<quote>Delorean’s epoch() assumes UTC and doesn’t[sic] support specifying a time-zone</quote>
+<quote>Even though both Arrow and Delorean seem faster, they do not handle properly timezones, if not at all. Delorean's epoch() assumes UTC and does support specifying a timezone, Arrow's get() does not support a timezone and Arrow's fromtimestamp() does not behave properly (See Why not Arrow?).</quote>
 
 <p>Huh? Why would anyone want to change the epoch time-zone? The epoch <em>is UTC</em>, it doesn’t change depending on locality. It’s the same time, everywhere, always, in UTC.</p>
 
@@ -530,4 +531,4 @@ Delorean(datetime=datetime.datetime(1942, 11, 3, 0, 40), timezone='Europe/Amster
 <quote>Shanks writes that Michigan started using standard time on 1885-09-18, but Howse writes (pp 124-125, referring to Popular Astronomy, 1901-01) that Detroit kept local time until 1900 when the City Council decreed that clocks should be put back twenty-eight minutes to Central Standard Time. Half the city obeyed, half refused. After considerable debate, the decision was rescinded and the city reverted to Sun time. A derisive offer to erect a sundial in front of the city hall was referred to the Committee on Sewers. Then, in 1905, Central time was adopted by city vote.</quote>
 <quote>Pam Belluck reported in the New York Times (2001-01-31) that the Indiana Legislature is considering a bill to adopt DST statewide. Her article mentioned Vevay, whose post office observes a different time-zone from Danner’s Hardware across the street.</quote>
 <quote>The most interesting region I have found consists of three towns on the southern coast of Australia, population 10 at last report, along with 50,000 sheep, about 100 kilometers long and 40 kilometers into the continent. The primary town is Madura, with the other towns being Mundrabilla and Eucla. According to the sheriff of Madura, the residents got tired of having to change the time so often, as they are located in a strip overlapping the border of South Australia and Western Australia. South Australia observes daylight saving time; Western Australia does not. The two states are one and a half hours apart. The residents decided to forget about this nonsense of changing the clock so much and set the local time 20 hours and 45 minutes from the international date line, or right in the middle of the time of South Australia and Western Australia.</quote>
-</article>
+</article-custom>
